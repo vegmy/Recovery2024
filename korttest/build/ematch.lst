@@ -1,0 +1,98 @@
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc9HyU8X.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"ematch.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/ematch.c"
+  20              		.section	.text.pin_matching,"ax",%progbits
+  21              		.align	1
+  22              		.global	pin_matching
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	pin_matching:
+  28              	.LVL0:
+  29              	.LFB132:
+   1:Core/Src/ematch.c **** 
+   2:Core/Src/ematch.c **** #include "ematch.h"
+   3:Core/Src/ematch.c **** 
+   4:Core/Src/ematch.c **** void pin_matching(GPIO_TypeDef *first_gpio, uint16_t first_pin,GPIO_TypeDef *second_gpio, uint16_t 
+  30              		.loc 1 4 111 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 4 111 is_stmt 0 view .LVU1
+  35 0000 38B5     		push	{r3, r4, r5, lr}
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 3, -16
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 1446     		mov	r4, r2
+  42 0004 1D46     		mov	r5, r3
+   5:Core/Src/ematch.c ****     if (HAL_GPIO_ReadPin(first_gpio, first_pin) == GPIO_PIN_SET)
+  43              		.loc 1 5 5 is_stmt 1 view .LVU2
+  44              		.loc 1 5 9 is_stmt 0 view .LVU3
+  45 0006 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  46              	.LVL1:
+  47              		.loc 1 5 8 discriminator 1 view .LVU4
+  48 000a 0128     		cmp	r0, #1
+  49 000c 00D0     		beq	.L4
+  50              	.L1:
+   6:Core/Src/ematch.c ****     {
+   7:Core/Src/ematch.c ****         HAL_GPIO_WritePin(second_gpio, second_pin, GPIO_PIN_SET);
+   8:Core/Src/ematch.c ****     }
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc9HyU8X.s 			page 2
+
+
+   9:Core/Src/ematch.c ****     
+  10:Core/Src/ematch.c **** 
+  11:Core/Src/ematch.c **** }...
+  51              		.loc 1 11 1 view .LVU5
+  52 000e 38BD     		pop	{r3, r4, r5, pc}
+  53              	.LVL2:
+  54              	.L4:
+   7:Core/Src/ematch.c ****         HAL_GPIO_WritePin(second_gpio, second_pin, GPIO_PIN_SET);
+  55              		.loc 1 7 9 is_stmt 1 view .LVU6
+  56 0010 0122     		movs	r2, #1
+  57 0012 2946     		mov	r1, r5
+  58 0014 2046     		mov	r0, r4
+  59 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  60              	.LVL3:
+  61              		.loc 1 11 1 is_stmt 0 view .LVU7
+  62 001a F8E7     		b	.L1
+  63              		.cfi_endproc
+  64              	.LFE132:
+  66              		.text
+  67              	.Letext0:
+  68              		.file 2 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+  69              		.file 3 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+  70              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+  71              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc9HyU8X.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ematch.c
+C:\Users\John_\AppData\Local\Temp\cc9HyU8X.s:21     .text.pin_matching:00000000 $t
+C:\Users\John_\AppData\Local\Temp\cc9HyU8X.s:27     .text.pin_matching:00000000 pin_matching
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin
+HAL_GPIO_WritePin
