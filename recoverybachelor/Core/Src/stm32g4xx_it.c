@@ -20,6 +20,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32g4xx_it.h"
+#include "spi.h"
+#include "stdint.h"
+#include "spi_slave_module.h"
+#include "stm32g4xx_hal_spi.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -41,7 +45,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+uint8_t rec_status;
+static uint8_t rx_data;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -55,7 +60,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern SPI_HandleTypeDef hspi3;
 /* USER CODE BEGIN EV */
 extern volatile uint8_t tellerflagg;
 /* USER CODE END EV */
@@ -195,8 +200,6 @@ void SysTick_Handler(void)
   // }
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
-  
-  
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -208,6 +211,58 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32g4xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles EXTI line[15:10] interrupts.
+  */
+void EXTI15_10_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+  uint8_t gps_data[12] = {0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb};
+  
+  HAL_SPI_Receive(&hspi3, &rx_data, 1, 1000);
+
+  switch (rx_data)
+  {
+  case GET_STATUS:
+    rec_status = IDLE;
+    HAL_SPI_Transmit(&hspi3, &rec_status, 1, 1000);
+    break;
+
+  case READ_GPS:
+    HAL_SPI_Transmit(&hspi3, gps_data, 12, 1000);
+    break;
+
+  case RELASE_DROUGE_CHUTE:
+    rec_status = E_MATCH_M;
+    // Set flag for seperation. Make logic for redundant e-match
+
+  case RELEASE_MAIN_CHUTE:
+    rec_status = E_MATCH_M;
+
+  default:
+    break;
+  }
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+
+  /* USER CODE END EXTI15_10_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPI3 global interrupt.
+  */
+void SPI3_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI3_IRQn 0 */
+
+  /* USER CODE END SPI3_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi3);
+  /* USER CODE BEGIN SPI3_IRQn 1 */
+
+  /* USER CODE END SPI3_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 

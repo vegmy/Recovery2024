@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
   28:Core/Src/i2c.c **** 
   29:Core/Src/i2c.c **** /* I2C1 init function */
   30:Core/Src/i2c.c **** void MX_I2C1_Init(void)
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 2
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 2
 
 
   31:Core/Src/i2c.c **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
   66              		.loc 1 47 30 is_stmt 0 view .LVU16
   67 0024 C361     		str	r3, [r0, #28]
   48:Core/Src/i2c.c ****   hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 3
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 3
 
 
   68              		.loc 1 48 3 is_stmt 1 view .LVU17
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
   51:Core/Src/i2c.c ****   }
   99              		.loc 1 51 5 is_stmt 1 view .LVU29
  100 0044 FFF7FEFF 		bl	Error_Handler
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 4
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 4
 
 
  101              	.LVL3:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  150 0008 1591     		str	r1, [sp, #84]
  151 000a 1691     		str	r1, [sp, #88]
  152 000c 1791     		str	r1, [sp, #92]
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 5
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 5
 
 
  153 000e 1891     		str	r1, [sp, #96]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  112:Core/Src/i2c.c **** 
  113:Core/Src/i2c.c ****     /* I2C1 clock enable */
  114:Core/Src/i2c.c ****     __HAL_RCC_I2C1_CLK_ENABLE();
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 6
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 6
 
 
  115:Core/Src/i2c.c ****   /* USER CODE BEGIN I2C1_MspInit 1 */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  209              		.loc 1 93 5 view .LVU55
  210 0046 019B     		ldr	r3, [sp, #4]
  211              	.LBE2:
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 7
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 7
 
 
   93:Core/Src/i2c.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  248 006e 15A9     		add	r1, sp, #84
  249 0070 4FF09040 		mov	r0, #1207959552
  250 0074 FFF7FEFF 		bl	HAL_GPIO_Init
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 8
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 8
 
 
  251              	.LVL13:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  288              		.loc 1 119 1 is_stmt 0 view .LVU91
  289 009e C0E7     		b	.L11
  290              	.LVL15:
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 9
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 9
 
 
  291              	.L16:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  133:Core/Src/i2c.c ****     PA15     ------> I2C1_SCL
  134:Core/Src/i2c.c ****     PB7     ------> I2C1_SDA
  135:Core/Src/i2c.c ****     */
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 10
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 10
 
 
  136:Core/Src/i2c.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_15);
@@ -596,9 +596,9 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  371      00000000 
  372              		.text
  373              	.Letext0:
- 374              		.file 2 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 375              		.file 3 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 11
+ 374              		.file 2 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 375              		.file 3 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 11
 
 
  376              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
@@ -611,22 +611,22 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 1
  383              		.file 11 "Core/Inc/i2c.h"
  384              		.file 12 "Core/Inc/main.h"
  385              		.file 13 "<built-in>"
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s 			page 12
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 i2c.c
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:21     .text.MX_I2C1_Init:00000000 $t
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:27     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:117    .text.MX_I2C1_Init:00000058 $d
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:370    .bss.hi2c1:00000000 hi2c1
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:123    .text.HAL_I2C_MspInit:00000000 $t
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:129    .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:299    .text.HAL_I2C_MspInit:000000a8 $d
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:306    .text.HAL_I2C_MspDeInit:00000000 $t
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:312    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:359    .text.HAL_I2C_MspDeInit:0000002c $d
-C:\Users\John_\AppData\Local\Temp\ccgnRU3g.s:367    .bss.hi2c1:00000000 $d
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:21     .text.MX_I2C1_Init:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:27     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:117    .text.MX_I2C1_Init:00000058 $d
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:370    .bss.hi2c1:00000000 hi2c1
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:123    .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:129    .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:299    .text.HAL_I2C_MspInit:000000a8 $d
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:306    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:312    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:359    .text.HAL_I2C_MspDeInit:0000002c $d
+C:\Users\vmyhr\AppData\Local\Temp\cc9KyWPk.s:367    .bss.hi2c1:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Init

@@ -26,7 +26,8 @@ build/stm32g4xx_it.o: Core/Src/stm32g4xx_it.c Core/Inc/main.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h \
- Core/Inc/stm32g4xx_it.h
+ Core/Inc/stm32g4xx_it.h Core/Inc/spi.h Core/Inc/main.h \
+ Core/Inc/spi_slave_module.h
 Core/Inc/main.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 Core/Inc/stm32g4xx_hal_conf.h:
@@ -58,3 +59,6 @@ Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h:
 Core/Inc/stm32g4xx_it.h:
+Core/Inc/spi.h:
+Core/Inc/main.h:
+Core/Inc/spi_slave_module.h:

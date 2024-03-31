@@ -72,6 +72,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -171,7 +172,6 @@ int main(void)
     // Other tasks can be done here
   }
   /* USER CODE END 3 */
-//}
 
 /**
   * @brief System Clock Configuration
