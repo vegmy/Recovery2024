@@ -75,6 +75,9 @@ void Error_Handler(void);
 #define GPIO_OUT_TRANS8_GPIO_Port GPIOA
 #define GPIO_OUT_TRANS6_Pin GPIO_PIN_10
 #define GPIO_OUT_TRANS6_GPIO_Port GPIOA
+#define CS_Pin GPIO_PIN_11
+#define CS_GPIO_Port GPIOA
+#define CS_EXTI_IRQn EXTI15_10_IRQn
 #define GPIO_OUT_TRANS2_Pin GPIO_PIN_12
 #define GPIO_OUT_TRANS2_GPIO_Port GPIOA
 #define T_SWDIO_Pin GPIO_PIN_13

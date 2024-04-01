@@ -109,24 +109,24 @@ int main(void)
     //HAL_StatusTypeDef test = MS5803_reset(&hi2c1); //reset
     //uint8_t gps_address = (0x42 << 1);
     //HAL_StatusTypeDef test_device = HAL_I2C_IsDeviceReady(&hi2c1, gps_address, 10, 1000);
-    uint8_t dev_address = (0x76 << 1);
-    HAL_StatusTypeDef test_device = HAL_I2C_IsDeviceReady(&hi2c1, dev_address, 10, 1000);
-  while(test_device == HAL_ERROR) {
-	  // if the test fails
-  }
-  for(int i = 1; i <= 6; i++) {
-	      MS5803_coeff(&hi2c1, &MS5803_coefficient[i-1], i); //get coefficients
-        } 
+  //   uint8_t dev_address = (0x76 << 1);
+  //   HAL_StatusTypeDef test_device = HAL_I2C_IsDeviceReady(&hi2c1, dev_address, 10, 1000);
+  // while(test_device == HAL_ERROR) {
+	//   // if the test fails
+  // }
+  // for(int i = 1; i <= 6; i++) {
+	//       MS5803_coeff(&hi2c1, &MS5803_coefficient[i-1], i); //get coefficients
+  //       } 
    
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    char print[32];
+    // char print[32];
     //float temperature = 0.0f;
     //float pressure = 0.0f;
-    float temperature, pressure;
-    memset(pressureMeasurements, 0, sizeof(pressureMeasurements));
+    // float temperature, pressure;
+    // memset(pressureMeasurements, 0, sizeof(pressureMeasurements));
   // while (1)
   // {
   //   MS5803_get_values(&hi2c1, ADC_256, &temperature, &pressure);
@@ -139,39 +139,40 @@ int main(void)
   while (1)
   {
 
-  volatile GPIO_PinState dio1_em1 = HAL_GPIO_ReadPin(GPIO_IN_DIO1_GPIO_Port,GPIO_IN_DIO1_Pin); // Måling av verdi fra d1
-  volatile GPIO_PinState dio2_em2 = HAL_GPIO_ReadPin(GPIO_IN_DIO2_GPIO_Port,GPIO_IN_DIO2_Pin); // Måling av verdi fra d2
-  volatile GPIO_PinState dio3_td1 = HAL_GPIO_ReadPin(GPIO_IN_DIO3_GPIO_Port,GPIO_IN_DIO3_Pin); // Måling av verdi fra d3
-  volatile GPIO_PinState dio4_td2 = HAL_GPIO_ReadPin(GPIO_IN_DIO4_GPIO_Port,GPIO_IN_DIO4_Pin); // Måling av verdi fra d4
-  volatile GPIO_PinState foto = HAL_GPIO_ReadPin(GPIO_IN_FOTO_GPIO_Port,GPIO_IN_FOTO_Pin); // Måling av verdi fra fototransistor
-  volatile GPIO_PinState magn = HAL_GPIO_ReadPin(GPIO_IN_MAGN_GPIO_Port,GPIO_IN_MAGN_Pin); // Måling av verdi fra magnetbryter
+  // volatile GPIO_PinState dio1_em1 = HAL_GPIO_ReadPin(GPIO_IN_DIO1_GPIO_Port,GPIO_IN_DIO1_Pin); // Måling av verdi fra d1
+  // volatile GPIO_PinState dio2_em2 = HAL_GPIO_ReadPin(GPIO_IN_DIO2_GPIO_Port,GPIO_IN_DIO2_Pin); // Måling av verdi fra d2
+  // volatile GPIO_PinState dio3_td1 = HAL_GPIO_ReadPin(GPIO_IN_DIO3_GPIO_Port,GPIO_IN_DIO3_Pin); // Måling av verdi fra d3
+  // volatile GPIO_PinState dio4_td2 = HAL_GPIO_ReadPin(GPIO_IN_DIO4_GPIO_Port,GPIO_IN_DIO4_Pin); // Måling av verdi fra d4
+  // volatile GPIO_PinState foto = HAL_GPIO_ReadPin(GPIO_IN_FOTO_GPIO_Port,GPIO_IN_FOTO_Pin); // Måling av verdi fra fototransistor
+  // volatile GPIO_PinState magn = HAL_GPIO_ReadPin(GPIO_IN_MAGN_GPIO_Port,GPIO_IN_MAGN_Pin); // Måling av verdi fra magnetbryter
 
-  volatile GPIO_PinState heli = HAL_GPIO_ReadPin(GPIO_IN_HELI_GPIO_Port,GPIO_IN_HELI_Pin); // avlesning av Miso(PB4) pin og setting av trans 4
-    if (magn == GPIO_PIN_SET && foto == GPIO_PIN_RESET && heli == GPIO_PIN_RESET){
-      HAL_GPIO_WritePin(GPIO_OUT_TRANS2_GPIO_Port,GPIO_OUT_TRANS2_Pin,GPIO_PIN_SET);
-    }else{  
-      HAL_GPIO_WritePin(GPIO_OUT_TRANS2_GPIO_Port,GPIO_OUT_TRANS2_Pin,GPIO_PIN_RESET);
-    }
-    if (magn == GPIO_PIN_RESET && foto == GPIO_PIN_SET && heli == GPIO_PIN_SET){ 
-      //tellerflagg = 1;
-      HAL_GPIO_WritePin(GPIO_OUT_TRANS8_GPIO_Port,GPIO_OUT_TRANS8_Pin,GPIO_PIN_SET);
-    }else { 
-      HAL_GPIO_WritePin(GPIO_OUT_TRANS8_GPIO_Port,GPIO_OUT_TRANS8_Pin,GPIO_PIN_RESET);
-    }
-  MS5803_get_values(&hi2c1, ADC_4096, &temperature, &pressure);
-      if (measurementIndex < NUM_MEASUREMENTS) {
-        pressureMeasurements[measurementIndex] = pressure; // Store the pressure measurement
-        measurementIndex++; // Move to the next index for the next measurement
-      } else {
-        measurementIndex = 0; // Uncomment this line to start measurements over
+  // volatile GPIO_PinState heli = HAL_GPIO_ReadPin(GPIO_IN_HELI_GPIO_Port,GPIO_IN_HELI_Pin); // avlesning av Miso(PB4) pin og setting av trans 4
+  //   if (magn == GPIO_PIN_SET && foto == GPIO_PIN_RESET && heli == GPIO_PIN_RESET){
+  //     HAL_GPIO_WritePin(GPIO_OUT_TRANS2_GPIO_Port,GPIO_OUT_TRANS2_Pin,GPIO_PIN_SET);
+  //   }else{  
+  //     HAL_GPIO_WritePin(GPIO_OUT_TRANS2_GPIO_Port,GPIO_OUT_TRANS2_Pin,GPIO_PIN_RESET);
+  //   }
+  //   if (magn == GPIO_PIN_RESET && foto == GPIO_PIN_SET && heli == GPIO_PIN_SET){ 
+  //     //tellerflagg = 1;
+  //     HAL_GPIO_WritePin(GPIO_OUT_TRANS8_GPIO_Port,GPIO_OUT_TRANS8_Pin,GPIO_PIN_SET);
+  //   }else { 
+  //     HAL_GPIO_WritePin(GPIO_OUT_TRANS8_GPIO_Port,GPIO_OUT_TRANS8_Pin,GPIO_PIN_RESET);
+  //   }
+  // MS5803_get_values(&hi2c1, ADC_4096, &temperature, &pressure);
+  //     if (measurementIndex < NUM_MEASUREMENTS) {
+  //       pressureMeasurements[measurementIndex] = pressure; // Store the pressure measurement
+  //       measurementIndex++; // Move to the next index for the next measurement
+  //     } else {
+  //       measurementIndex = 0; // Uncomment this line to start measurements over
         
-      }
-      lastMeasurementTime = HAL_GetTick(); // Update the timestamp of the last measurement
-    }
+  //     }
+  //     lastMeasurementTime = HAL_GetTick(); // Update the timestamp of the last measurement
+  //   }
     
     // Other tasks can be done here
   }
   /* USER CODE END 3 */
+}
 
 /**
   * @brief System Clock Configuration
