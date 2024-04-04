@@ -1,0 +1,580 @@
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"state.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/state.c"
+  20              		.section	.text.pressTobytes,"ax",%progbits
+  21              		.align	1
+  22              		.global	pressTobytes
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	pressTobytes:
+  28              	.LVL0:
+  29              	.LFB132:
+   1:Core/Src/state.c **** #include "main.h"
+   2:Core/Src/state.c **** #include "stdint.h" // For uint8_t
+   3:Core/Src/state.c **** #include <string.h> // For memcpy
+   4:Core/Src/state.c **** 
+   5:Core/Src/state.c ****     
+   6:Core/Src/state.c **** void pressTobytes(float pressure, uint8_t presbuf[4]) {
+  30              		.loc 1 6 55 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   7:Core/Src/state.c ****     memcpy(presbuf,&pressure, sizeof(float));
+  35              		.loc 1 7 5 view .LVU1
+  36 0000 10EE103A 		vmov	r3, s0	@ int
+  37 0004 0360     		str	r3, [r0]	@ unaligned
+   8:Core/Src/state.c **** }
+  38              		.loc 1 8 1 is_stmt 0 view .LVU2
+  39 0006 7047     		bx	lr
+  40              		.cfi_endproc
+  41              	.LFE132:
+  43              		.section	.text.stateControll,"ax",%progbits
+  44              		.align	1
+  45              		.global	stateControll
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  50              	stateControll:
+  51              	.LVL1:
+  52              	.LFB133:
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 2
+
+
+   9:Core/Src/state.c **** 
+  10:Core/Src/state.c **** void stateControll( volatile uint8_t *tilstandsreg1, volatile uint8_t *tilstandsreg2, char *buffer,
+  53              		.loc 1 10 120 is_stmt 1 view -0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		.loc 1 10 120 is_stmt 0 view .LVU4
+  58 0000 70B5     		push	{r4, r5, r6, lr}
+  59              		.cfi_def_cfa_offset 16
+  60              		.cfi_offset 4, -16
+  61              		.cfi_offset 5, -12
+  62              		.cfi_offset 6, -8
+  63              		.cfi_offset 14, -4
+  64 0002 0C46     		mov	r4, r1
+  65 0004 1546     		mov	r5, r2
+  66 0006 1E46     		mov	r6, r3
+  11:Core/Src/state.c **** 
+  12:Core/Src/state.c ****     extern volatile GPIO_PinState dio1_em1;
+  67              		.loc 1 12 5 is_stmt 1 view .LVU5
+  13:Core/Src/state.c ****     extern volatile GPIO_PinState dio2_em2;
+  68              		.loc 1 13 5 view .LVU6
+  14:Core/Src/state.c ****     extern volatile GPIO_PinState dio3_td1;
+  69              		.loc 1 14 5 view .LVU7
+  15:Core/Src/state.c ****     extern volatile GPIO_PinState dio4_td2;
+  70              		.loc 1 15 5 view .LVU8
+  16:Core/Src/state.c ****     extern volatile GPIO_PinState foto;
+  71              		.loc 1 16 5 view .LVU9
+  17:Core/Src/state.c ****     extern volatile GPIO_PinState magn;
+  72              		.loc 1 17 5 view .LVU10
+  18:Core/Src/state.c ****     extern volatile GPIO_PinState heli;
+  73              		.loc 1 18 5 view .LVU11
+  19:Core/Src/state.c ****     extern volatile uint8_t trans2_flagg;
+  74              		.loc 1 19 5 view .LVU12
+  20:Core/Src/state.c ****     extern volatile uint8_t trans4_flagg;
+  75              		.loc 1 20 5 view .LVU13
+  21:Core/Src/state.c ****     extern volatile uint8_t trans6_flagg;
+  76              		.loc 1 21 5 view .LVU14
+  22:Core/Src/state.c ****     extern volatile uint8_t eagle_flagg;
+  77              		.loc 1 22 5 view .LVU15
+  23:Core/Src/state.c ****     extern volatile uint8_t separation_conf;
+  78              		.loc 1 23 5 view .LVU16
+  24:Core/Src/state.c ****     extern volatile uint8_t e_main;
+  79              		.loc 1 24 5 view .LVU17
+  25:Core/Src/state.c ****     extern volatile uint8_t e_redundant;
+  80              		.loc 1 25 5 view .LVU18
+  26:Core/Src/state.c ****     extern volatile uint8_t tender_decender;
+  81              		.loc 1 26 5 view .LVU19
+  27:Core/Src/state.c ****     
+  28:Core/Src/state.c **** 
+  29:Core/Src/state.c **** 
+  30:Core/Src/state.c **** 
+  31:Core/Src/state.c ****     if(dio1_em1 == GPIO_PIN_SET)
+  82              		.loc 1 31 5 view .LVU20
+  83              		.loc 1 31 17 is_stmt 0 view .LVU21
+  84 0008 564B     		ldr	r3, .L35
+  85              	.LVL2:
+  86              		.loc 1 31 17 view .LVU22
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 3
+
+
+  87 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  88 000c DBB2     		uxtb	r3, r3
+  89              		.loc 1 31 7 view .LVU23
+  90 000e 012B     		cmp	r3, #1
+  91 0010 6CD0     		beq	.L28
+  32:Core/Src/state.c ****     {
+  33:Core/Src/state.c ****       *tilstandsreg1 |=  0x80;
+  34:Core/Src/state.c ****     }
+  35:Core/Src/state.c ****     else
+  36:Core/Src/state.c ****     {
+  37:Core/Src/state.c ****       *tilstandsreg1 &= (~0x80);
+  92              		.loc 1 37 7 is_stmt 1 view .LVU24
+  93              		.loc 1 37 22 is_stmt 0 view .LVU25
+  94 0012 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  95 0014 03F07F03 		and	r3, r3, #127
+  96 0018 0370     		strb	r3, [r0]
+  97              	.L4:
+  38:Core/Src/state.c ****     }
+  39:Core/Src/state.c ****     if(dio2_em2 == GPIO_PIN_SET)
+  98              		.loc 1 39 5 is_stmt 1 view .LVU26
+  99              		.loc 1 39 17 is_stmt 0 view .LVU27
+ 100 001a 534B     		ldr	r3, .L35+4
+ 101 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 102 001e DBB2     		uxtb	r3, r3
+ 103              		.loc 1 39 7 view .LVU28
+ 104 0020 012B     		cmp	r3, #1
+ 105 0022 68D0     		beq	.L29
+  40:Core/Src/state.c ****     {
+  41:Core/Src/state.c ****       *tilstandsreg1 |=  0x40;
+  42:Core/Src/state.c ****     }
+  43:Core/Src/state.c ****     else
+  44:Core/Src/state.c ****     {
+  45:Core/Src/state.c ****       *tilstandsreg1 &= (~0x40);
+ 106              		.loc 1 45 7 is_stmt 1 view .LVU29
+ 107              		.loc 1 45 22 is_stmt 0 view .LVU30
+ 108 0024 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 109 0026 03F0BF03 		and	r3, r3, #191
+ 110 002a 0370     		strb	r3, [r0]
+ 111              	.L6:
+  46:Core/Src/state.c ****     }
+  47:Core/Src/state.c ****     if(dio3_td1 == GPIO_PIN_SET)
+ 112              		.loc 1 47 5 is_stmt 1 view .LVU31
+ 113              		.loc 1 47 17 is_stmt 0 view .LVU32
+ 114 002c 4F4B     		ldr	r3, .L35+8
+ 115 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 116 0030 DBB2     		uxtb	r3, r3
+ 117              		.loc 1 47 7 view .LVU33
+ 118 0032 012B     		cmp	r3, #1
+ 119 0034 64D0     		beq	.L30
+  48:Core/Src/state.c ****     {
+  49:Core/Src/state.c ****       *tilstandsreg1 |=  0x20;
+  50:Core/Src/state.c ****     }
+  51:Core/Src/state.c ****     else
+  52:Core/Src/state.c ****     {
+  53:Core/Src/state.c ****       *tilstandsreg1 &= (~0x20);
+ 120              		.loc 1 53 7 is_stmt 1 view .LVU34
+ 121              		.loc 1 53 22 is_stmt 0 view .LVU35
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 4
+
+
+ 122 0036 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 123 0038 03F0DF03 		and	r3, r3, #223
+ 124 003c 0370     		strb	r3, [r0]
+ 125              	.L8:
+  54:Core/Src/state.c ****     }
+  55:Core/Src/state.c ****     if(dio4_td2 == GPIO_PIN_SET)
+ 126              		.loc 1 55 5 is_stmt 1 view .LVU36
+ 127              		.loc 1 55 17 is_stmt 0 view .LVU37
+ 128 003e 4C4B     		ldr	r3, .L35+12
+ 129 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 130 0042 DBB2     		uxtb	r3, r3
+ 131              		.loc 1 55 7 view .LVU38
+ 132 0044 012B     		cmp	r3, #1
+ 133 0046 60D0     		beq	.L31
+  56:Core/Src/state.c ****     {
+  57:Core/Src/state.c ****       *tilstandsreg1 |=  0x10;
+  58:Core/Src/state.c ****     }
+  59:Core/Src/state.c ****     else
+  60:Core/Src/state.c ****     {
+  61:Core/Src/state.c ****       *tilstandsreg1 &= (~0x10);
+ 134              		.loc 1 61 7 is_stmt 1 view .LVU39
+ 135              		.loc 1 61 22 is_stmt 0 view .LVU40
+ 136 0048 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 137 004a 03F0EF03 		and	r3, r3, #239
+ 138 004e 0370     		strb	r3, [r0]
+ 139              	.L10:
+  62:Core/Src/state.c ****     }
+  63:Core/Src/state.c ****     if(foto == GPIO_PIN_SET)
+ 140              		.loc 1 63 5 is_stmt 1 view .LVU41
+ 141              		.loc 1 63 13 is_stmt 0 view .LVU42
+ 142 0050 484B     		ldr	r3, .L35+16
+ 143 0052 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 144 0054 DBB2     		uxtb	r3, r3
+ 145              		.loc 1 63 7 view .LVU43
+ 146 0056 012B     		cmp	r3, #1
+ 147 0058 5CD0     		beq	.L32
+  64:Core/Src/state.c ****     {
+  65:Core/Src/state.c ****       *tilstandsreg1 |=  0x08;
+  66:Core/Src/state.c ****     }
+  67:Core/Src/state.c ****     else
+  68:Core/Src/state.c ****     {
+  69:Core/Src/state.c ****       *tilstandsreg1 &= (~0x08);
+ 148              		.loc 1 69 7 is_stmt 1 view .LVU44
+ 149              		.loc 1 69 22 is_stmt 0 view .LVU45
+ 150 005a 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 151 005c 03F0F703 		and	r3, r3, #247
+ 152 0060 0370     		strb	r3, [r0]
+ 153              	.L12:
+  70:Core/Src/state.c ****     }
+  71:Core/Src/state.c ****     if(magn == GPIO_PIN_SET)
+ 154              		.loc 1 71 5 is_stmt 1 view .LVU46
+ 155              		.loc 1 71 13 is_stmt 0 view .LVU47
+ 156 0062 454B     		ldr	r3, .L35+20
+ 157 0064 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 158 0066 DBB2     		uxtb	r3, r3
+ 159              		.loc 1 71 7 view .LVU48
+ 160 0068 012B     		cmp	r3, #1
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 5
+
+
+ 161 006a 58D0     		beq	.L33
+  72:Core/Src/state.c ****     {
+  73:Core/Src/state.c ****       *tilstandsreg1 |=  0x04;
+  74:Core/Src/state.c ****     }
+  75:Core/Src/state.c ****     else
+  76:Core/Src/state.c ****     {
+  77:Core/Src/state.c ****       *tilstandsreg1 &= (~0x04);
+ 162              		.loc 1 77 7 is_stmt 1 view .LVU49
+ 163              		.loc 1 77 22 is_stmt 0 view .LVU50
+ 164 006c 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 165 006e 03F0FB03 		and	r3, r3, #251
+ 166 0072 0370     		strb	r3, [r0]
+ 167              	.L14:
+  78:Core/Src/state.c ****     }
+  79:Core/Src/state.c ****     if(heli == GPIO_PIN_SET)
+ 168              		.loc 1 79 5 is_stmt 1 view .LVU51
+ 169              		.loc 1 79 13 is_stmt 0 view .LVU52
+ 170 0074 414B     		ldr	r3, .L35+24
+ 171 0076 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 172 0078 DBB2     		uxtb	r3, r3
+ 173              		.loc 1 79 7 view .LVU53
+ 174 007a 012B     		cmp	r3, #1
+ 175 007c 54D0     		beq	.L34
+  80:Core/Src/state.c ****     {
+  81:Core/Src/state.c ****       *tilstandsreg1 |=  0x02;
+  82:Core/Src/state.c ****     }
+  83:Core/Src/state.c ****     else
+  84:Core/Src/state.c ****     {
+  85:Core/Src/state.c ****       *tilstandsreg1 &= (~0x02);
+ 176              		.loc 1 85 7 is_stmt 1 view .LVU54
+ 177              		.loc 1 85 22 is_stmt 0 view .LVU55
+ 178 007e 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 179 0080 03F0FD03 		and	r3, r3, #253
+ 180 0084 0370     		strb	r3, [r0]
+ 181              	.L16:
+  86:Core/Src/state.c ****     }
+  87:Core/Src/state.c ****     if(separation_conf)
+ 182              		.loc 1 87 5 is_stmt 1 view .LVU56
+ 183              		.loc 1 87 8 is_stmt 0 view .LVU57
+ 184 0086 3E4B     		ldr	r3, .L35+28
+ 185 0088 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 186              		.loc 1 87 7 view .LVU58
+ 187 008a 002B     		cmp	r3, #0
+ 188 008c 51D0     		beq	.L17
+  88:Core/Src/state.c ****     {
+  89:Core/Src/state.c ****       *tilstandsreg2 |=  0x80;
+ 189              		.loc 1 89 7 is_stmt 1 view .LVU59
+ 190 008e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 191              		.loc 1 89 22 is_stmt 0 view .LVU60
+ 192 0090 43F08003 		orr	r3, r3, #128
+ 193 0094 2370     		strb	r3, [r4]
+ 194              	.L18:
+  90:Core/Src/state.c ****     }
+  91:Core/Src/state.c ****     else
+  92:Core/Src/state.c ****     {
+  93:Core/Src/state.c ****       *tilstandsreg2 &= (~0x80);
+  94:Core/Src/state.c ****     }
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 6
+
+
+  95:Core/Src/state.c ****     if(eagle_flagg)
+ 195              		.loc 1 95 5 is_stmt 1 view .LVU61
+ 196              		.loc 1 95 8 is_stmt 0 view .LVU62
+ 197 0096 3B4B     		ldr	r3, .L35+32
+ 198 0098 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 199              		.loc 1 95 7 view .LVU63
+ 200 009a 002B     		cmp	r3, #0
+ 201 009c 4ED0     		beq	.L19
+  96:Core/Src/state.c ****     {
+  97:Core/Src/state.c ****       *tilstandsreg2 |=  0x40;
+ 202              		.loc 1 97 7 is_stmt 1 view .LVU64
+ 203 009e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 204              		.loc 1 97 22 is_stmt 0 view .LVU65
+ 205 00a0 43F04003 		orr	r3, r3, #64
+ 206 00a4 2370     		strb	r3, [r4]
+ 207              	.L20:
+  98:Core/Src/state.c ****     }
+  99:Core/Src/state.c ****     else
+ 100:Core/Src/state.c ****     {
+ 101:Core/Src/state.c ****       *tilstandsreg2 &= (~0x40);
+ 102:Core/Src/state.c ****     }
+ 103:Core/Src/state.c ****     if(e_main)
+ 208              		.loc 1 103 5 is_stmt 1 view .LVU66
+ 209              		.loc 1 103 8 is_stmt 0 view .LVU67
+ 210 00a6 384B     		ldr	r3, .L35+36
+ 211 00a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 212              		.loc 1 103 7 view .LVU68
+ 213 00aa 002B     		cmp	r3, #0
+ 214 00ac 4BD0     		beq	.L21
+ 104:Core/Src/state.c ****     {
+ 105:Core/Src/state.c ****       *tilstandsreg2 |=  0x20;
+ 215              		.loc 1 105 7 is_stmt 1 view .LVU69
+ 216 00ae 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 217              		.loc 1 105 22 is_stmt 0 view .LVU70
+ 218 00b0 43F02003 		orr	r3, r3, #32
+ 219 00b4 2370     		strb	r3, [r4]
+ 220              	.L22:
+ 106:Core/Src/state.c ****     }
+ 107:Core/Src/state.c ****     else
+ 108:Core/Src/state.c ****     {
+ 109:Core/Src/state.c ****       *tilstandsreg2 &= (~0x20);
+ 110:Core/Src/state.c ****     }
+ 111:Core/Src/state.c ****     if(e_redundant)
+ 221              		.loc 1 111 5 is_stmt 1 view .LVU71
+ 222              		.loc 1 111 8 is_stmt 0 view .LVU72
+ 223 00b6 354B     		ldr	r3, .L35+40
+ 224 00b8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 225              		.loc 1 111 7 view .LVU73
+ 226 00ba 002B     		cmp	r3, #0
+ 227 00bc 48D0     		beq	.L23
+ 112:Core/Src/state.c ****     {
+ 113:Core/Src/state.c ****       *tilstandsreg2 |=  0x10;
+ 228              		.loc 1 113 7 is_stmt 1 view .LVU74
+ 229 00be 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 230              		.loc 1 113 22 is_stmt 0 view .LVU75
+ 231 00c0 43F01003 		orr	r3, r3, #16
+ 232 00c4 2370     		strb	r3, [r4]
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 7
+
+
+ 233              	.L24:
+ 114:Core/Src/state.c ****     }
+ 115:Core/Src/state.c ****     else
+ 116:Core/Src/state.c ****     {
+ 117:Core/Src/state.c ****       *tilstandsreg2 &= (~0x10);
+ 118:Core/Src/state.c ****     }
+ 119:Core/Src/state.c ****     if(tender_decender)
+ 234              		.loc 1 119 5 is_stmt 1 view .LVU76
+ 235              		.loc 1 119 8 is_stmt 0 view .LVU77
+ 236 00c6 324B     		ldr	r3, .L35+44
+ 237 00c8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 238              		.loc 1 119 7 view .LVU78
+ 239 00ca 002B     		cmp	r3, #0
+ 240 00cc 45D0     		beq	.L25
+ 120:Core/Src/state.c ****     {
+ 121:Core/Src/state.c ****       *tilstandsreg2 |=  0x08;
+ 241              		.loc 1 121 7 is_stmt 1 view .LVU79
+ 242 00ce 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 243              		.loc 1 121 22 is_stmt 0 view .LVU80
+ 244 00d0 43F00803 		orr	r3, r3, #8
+ 245 00d4 2370     		strb	r3, [r4]
+ 246              	.L26:
+ 122:Core/Src/state.c ****     }
+ 123:Core/Src/state.c ****     else
+ 124:Core/Src/state.c ****     {
+ 125:Core/Src/state.c ****       *tilstandsreg2 &= (~0x08);
+ 126:Core/Src/state.c ****     }
+ 127:Core/Src/state.c ****     strncpy(buffer, tilstandsreg1, buffersize - 1);
+ 247              		.loc 1 127 5 is_stmt 1 view .LVU81
+ 248 00d6 721E     		subs	r2, r6, #1
+ 249              	.LVL3:
+ 250              		.loc 1 127 5 is_stmt 0 view .LVU82
+ 251 00d8 0146     		mov	r1, r0
+ 252              	.LVL4:
+ 253              		.loc 1 127 5 view .LVU83
+ 254 00da 2846     		mov	r0, r5
+ 255              	.LVL5:
+ 256              		.loc 1 127 5 view .LVU84
+ 257 00dc FFF7FEFF 		bl	strncpy
+ 258              	.LVL6:
+ 128:Core/Src/state.c ****     strncpy(buffer, tilstandsreg2, buffersize);
+ 259              		.loc 1 128 5 is_stmt 1 view .LVU85
+ 260 00e0 3246     		mov	r2, r6
+ 261 00e2 2146     		mov	r1, r4
+ 262 00e4 2846     		mov	r0, r5
+ 263 00e6 FFF7FEFF 		bl	strncpy
+ 264              	.LVL7:
+ 129:Core/Src/state.c **** }...
+ 265              		.loc 1 129 1 is_stmt 0 view .LVU86
+ 266 00ea 70BD     		pop	{r4, r5, r6, pc}
+ 267              	.LVL8:
+ 268              	.L28:
+  33:Core/Src/state.c ****       *tilstandsreg1 |=  0x80;
+ 269              		.loc 1 33 7 is_stmt 1 view .LVU87
+ 270 00ec 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  33:Core/Src/state.c ****       *tilstandsreg1 |=  0x80;
+ 271              		.loc 1 33 22 is_stmt 0 view .LVU88
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 8
+
+
+ 272 00ee 43F08003 		orr	r3, r3, #128
+ 273 00f2 0370     		strb	r3, [r0]
+ 274 00f4 91E7     		b	.L4
+ 275              	.L29:
+  41:Core/Src/state.c ****       *tilstandsreg1 |=  0x40;
+ 276              		.loc 1 41 7 is_stmt 1 view .LVU89
+ 277 00f6 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  41:Core/Src/state.c ****       *tilstandsreg1 |=  0x40;
+ 278              		.loc 1 41 22 is_stmt 0 view .LVU90
+ 279 00f8 43F04003 		orr	r3, r3, #64
+ 280 00fc 0370     		strb	r3, [r0]
+ 281 00fe 95E7     		b	.L6
+ 282              	.L30:
+  49:Core/Src/state.c ****       *tilstandsreg1 |=  0x20;
+ 283              		.loc 1 49 7 is_stmt 1 view .LVU91
+ 284 0100 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  49:Core/Src/state.c ****       *tilstandsreg1 |=  0x20;
+ 285              		.loc 1 49 22 is_stmt 0 view .LVU92
+ 286 0102 43F02003 		orr	r3, r3, #32
+ 287 0106 0370     		strb	r3, [r0]
+ 288 0108 99E7     		b	.L8
+ 289              	.L31:
+  57:Core/Src/state.c ****       *tilstandsreg1 |=  0x10;
+ 290              		.loc 1 57 7 is_stmt 1 view .LVU93
+ 291 010a 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  57:Core/Src/state.c ****       *tilstandsreg1 |=  0x10;
+ 292              		.loc 1 57 22 is_stmt 0 view .LVU94
+ 293 010c 43F01003 		orr	r3, r3, #16
+ 294 0110 0370     		strb	r3, [r0]
+ 295 0112 9DE7     		b	.L10
+ 296              	.L32:
+  65:Core/Src/state.c ****       *tilstandsreg1 |=  0x08;
+ 297              		.loc 1 65 7 is_stmt 1 view .LVU95
+ 298 0114 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  65:Core/Src/state.c ****       *tilstandsreg1 |=  0x08;
+ 299              		.loc 1 65 22 is_stmt 0 view .LVU96
+ 300 0116 43F00803 		orr	r3, r3, #8
+ 301 011a 0370     		strb	r3, [r0]
+ 302 011c A1E7     		b	.L12
+ 303              	.L33:
+  73:Core/Src/state.c ****       *tilstandsreg1 |=  0x04;
+ 304              		.loc 1 73 7 is_stmt 1 view .LVU97
+ 305 011e 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  73:Core/Src/state.c ****       *tilstandsreg1 |=  0x04;
+ 306              		.loc 1 73 22 is_stmt 0 view .LVU98
+ 307 0120 43F00403 		orr	r3, r3, #4
+ 308 0124 0370     		strb	r3, [r0]
+ 309 0126 A5E7     		b	.L14
+ 310              	.L34:
+  81:Core/Src/state.c ****       *tilstandsreg1 |=  0x02;
+ 311              		.loc 1 81 7 is_stmt 1 view .LVU99
+ 312 0128 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  81:Core/Src/state.c ****       *tilstandsreg1 |=  0x02;
+ 313              		.loc 1 81 22 is_stmt 0 view .LVU100
+ 314 012a 43F00203 		orr	r3, r3, #2
+ 315 012e 0370     		strb	r3, [r0]
+ 316 0130 A9E7     		b	.L16
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 9
+
+
+ 317              	.L17:
+  93:Core/Src/state.c ****       *tilstandsreg2 &= (~0x80);
+ 318              		.loc 1 93 7 is_stmt 1 view .LVU101
+  93:Core/Src/state.c ****       *tilstandsreg2 &= (~0x80);
+ 319              		.loc 1 93 22 is_stmt 0 view .LVU102
+ 320 0132 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 321 0134 03F07F03 		and	r3, r3, #127
+ 322 0138 2370     		strb	r3, [r4]
+ 323 013a ACE7     		b	.L18
+ 324              	.L19:
+ 101:Core/Src/state.c ****       *tilstandsreg2 &= (~0x40);
+ 325              		.loc 1 101 7 is_stmt 1 view .LVU103
+ 101:Core/Src/state.c ****       *tilstandsreg2 &= (~0x40);
+ 326              		.loc 1 101 22 is_stmt 0 view .LVU104
+ 327 013c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 328 013e 03F0BF03 		and	r3, r3, #191
+ 329 0142 2370     		strb	r3, [r4]
+ 330 0144 AFE7     		b	.L20
+ 331              	.L21:
+ 109:Core/Src/state.c ****       *tilstandsreg2 &= (~0x20);
+ 332              		.loc 1 109 7 is_stmt 1 view .LVU105
+ 109:Core/Src/state.c ****       *tilstandsreg2 &= (~0x20);
+ 333              		.loc 1 109 22 is_stmt 0 view .LVU106
+ 334 0146 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 335 0148 03F0DF03 		and	r3, r3, #223
+ 336 014c 2370     		strb	r3, [r4]
+ 337 014e B2E7     		b	.L22
+ 338              	.L23:
+ 117:Core/Src/state.c ****       *tilstandsreg2 &= (~0x10);
+ 339              		.loc 1 117 7 is_stmt 1 view .LVU107
+ 117:Core/Src/state.c ****       *tilstandsreg2 &= (~0x10);
+ 340              		.loc 1 117 22 is_stmt 0 view .LVU108
+ 341 0150 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 342 0152 03F0EF03 		and	r3, r3, #239
+ 343 0156 2370     		strb	r3, [r4]
+ 344 0158 B5E7     		b	.L24
+ 345              	.L25:
+ 125:Core/Src/state.c ****       *tilstandsreg2 &= (~0x08);
+ 346              		.loc 1 125 7 is_stmt 1 view .LVU109
+ 125:Core/Src/state.c ****       *tilstandsreg2 &= (~0x08);
+ 347              		.loc 1 125 22 is_stmt 0 view .LVU110
+ 348 015a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 349 015c 03F0F703 		and	r3, r3, #247
+ 350 0160 2370     		strb	r3, [r4]
+ 351 0162 B8E7     		b	.L26
+ 352              	.L36:
+ 353              		.align	2
+ 354              	.L35:
+ 355 0164 00000000 		.word	dio1_em1
+ 356 0168 00000000 		.word	dio2_em2
+ 357 016c 00000000 		.word	dio3_td1
+ 358 0170 00000000 		.word	dio4_td2
+ 359 0174 00000000 		.word	foto
+ 360 0178 00000000 		.word	magn
+ 361 017c 00000000 		.word	heli
+ 362 0180 00000000 		.word	separation_conf
+ 363 0184 00000000 		.word	eagle_flagg
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 10
+
+
+ 364 0188 00000000 		.word	e_main
+ 365 018c 00000000 		.word	e_redundant
+ 366 0190 00000000 		.word	tender_decender
+ 367              		.cfi_endproc
+ 368              	.LFE133:
+ 370              		.text
+ 371              	.Letext0:
+ 372              		.file 2 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 373              		.file 3 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 374              		.file 4 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 375              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 376              		.file 6 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc63bNnr.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 state.c
+C:\Users\John_\AppData\Local\Temp\cc63bNnr.s:21     .text.pressTobytes:00000000 $t
+C:\Users\John_\AppData\Local\Temp\cc63bNnr.s:27     .text.pressTobytes:00000000 pressTobytes
+C:\Users\John_\AppData\Local\Temp\cc63bNnr.s:44     .text.stateControll:00000000 $t
+C:\Users\John_\AppData\Local\Temp\cc63bNnr.s:50     .text.stateControll:00000000 stateControll
+C:\Users\John_\AppData\Local\Temp\cc63bNnr.s:355    .text.stateControll:00000164 $d
+
+UNDEFINED SYMBOLS
+strncpy
+dio1_em1
+dio2_em2
+dio3_td1
+dio4_td2
+foto
+magn
+heli
+separation_conf
+eagle_flagg
+e_main
+e_redundant
+tender_decender

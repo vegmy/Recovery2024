@@ -1,0 +1,487 @@
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gps.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/gps.c"
+  20              		.section	.rodata.processGPSMessage.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 2C00     		.ascii	",\000"
+  24 0002 0000     		.align	2
+  25              	.LC1:
+  26 0004 25732C25 		.ascii	"%s,%s,%s,%s\000"
+  26      732C2573 
+  26      2C257300 
+  27              		.section	.text.processGPSMessage,"ax",%progbits
+  28              		.align	1
+  29              		.global	processGPSMessage
+  30              		.syntax unified
+  31              		.thumb
+  32              		.thumb_func
+  34              	processGPSMessage:
+  35              	.LVL0:
+  36              	.LFB135:
+   1:Core/Src/gps.c **** #include <stdio.h>  // For sscanf
+   2:Core/Src/gps.c **** #include <string.h> // For strtok
+   3:Core/Src/gps.c **** #include <stdint.h> // For uint8_t
+   4:Core/Src/gps.c **** #include "i2c.h"
+   5:Core/Src/gps.c **** #define I2C_ADDRESS_GPS 0x42 << 1
+   6:Core/Src/gps.c **** 
+   7:Core/Src/gps.c **** 
+   8:Core/Src/gps.c **** 
+   9:Core/Src/gps.c **** void processGPSMessage(char* gpggaMessage, char* resultBuffer, size_t bufferSize) {
+  37              		.loc 1 9 83 view -0
+  38              		.cfi_startproc
+  39              		@ args = 0, pretend = 0, frame = 40
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              		.loc 1 9 83 is_stmt 0 view .LVU1
+  42 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  43              		.cfi_def_cfa_offset 20
+  44              		.cfi_offset 4, -20
+  45              		.cfi_offset 5, -16
+  46              		.cfi_offset 6, -12
+  47              		.cfi_offset 7, -8
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 2
+
+
+  48              		.cfi_offset 14, -4
+  49 0002 8FB0     		sub	sp, sp, #60
+  50              		.cfi_def_cfa_offset 80
+  51 0004 0746     		mov	r7, r0
+  52 0006 0D46     		mov	r5, r1
+  53 0008 1646     		mov	r6, r2
+  10:Core/Src/gps.c ****     // Variables to hold the extracted data
+  11:Core/Src/gps.c ****     char latitude[12] = {0};
+  54              		.loc 1 11 5 is_stmt 1 view .LVU2
+  55              		.loc 1 11 10 is_stmt 0 view .LVU3
+  56 000a 0024     		movs	r4, #0
+  57 000c 0B94     		str	r4, [sp, #44]
+  58 000e 0C94     		str	r4, [sp, #48]
+  59 0010 0D94     		str	r4, [sp, #52]
+  12:Core/Src/gps.c ****     char longitude[13] = {0};
+  60              		.loc 1 12 5 is_stmt 1 view .LVU4
+  61              		.loc 1 12 10 is_stmt 0 view .LVU5
+  62 0012 0794     		str	r4, [sp, #28]
+  63 0014 0894     		str	r4, [sp, #32]
+  64 0016 0994     		str	r4, [sp, #36]
+  65 0018 8DF82840 		strb	r4, [sp, #40]
+  13:Core/Src/gps.c ****     char gpsFix[2] = {0};
+  66              		.loc 1 13 5 is_stmt 1 view .LVU6
+  67              		.loc 1 13 10 is_stmt 0 view .LVU7
+  68 001c ADF81840 		strh	r4, [sp, #24]	@ movhi
+  14:Core/Src/gps.c ****     char numSatellites[3] = {0};
+  69              		.loc 1 14 5 is_stmt 1 view .LVU8
+  70              		.loc 1 14 10 is_stmt 0 view .LVU9
+  71 0020 ADF81440 		strh	r4, [sp, #20]	@ movhi
+  72 0024 8DF81640 		strb	r4, [sp, #22]
+  15:Core/Src/gps.c ****     memset(resultBuffer, 0, bufferSize);
+  73              		.loc 1 15 5 is_stmt 1 view .LVU10
+  74 0028 2146     		mov	r1, r4
+  75              	.LVL1:
+  76              		.loc 1 15 5 is_stmt 0 view .LVU11
+  77 002a 2846     		mov	r0, r5
+  78              	.LVL2:
+  79              		.loc 1 15 5 view .LVU12
+  80 002c FFF7FEFF 		bl	memset
+  81              	.LVL3:
+  16:Core/Src/gps.c ****     
+  17:Core/Src/gps.c **** 
+  18:Core/Src/gps.c ****     // Tokenize the GPGGA message using comma as a delimiter
+  19:Core/Src/gps.c ****     char* token = strtok(gpggaMessage, ",");
+  82              		.loc 1 19 5 is_stmt 1 view .LVU13
+  83              		.loc 1 19 19 is_stmt 0 view .LVU14
+  84 0030 2549     		ldr	r1, .L15
+  85 0032 3846     		mov	r0, r7
+  86 0034 FFF7FEFF 		bl	strtok
+  87              	.LVL4:
+  88 0038 0146     		mov	r1, r0
+  89              	.LVL5:
+  20:Core/Src/gps.c ****     int field = 0; // Field counter
+  90              		.loc 1 20 5 is_stmt 1 view .LVU15
+  21:Core/Src/gps.c **** 
+  22:Core/Src/gps.c ****     while (token != NULL) {
+  91              		.loc 1 22 5 view .LVU16
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 3
+
+
+  92              		.loc 1 22 11 is_stmt 0 view .LVU17
+  93 003a 08E0     		b	.L2
+  94              	.LVL6:
+  95              	.L10:
+  23:Core/Src/gps.c ****         // Increment field counter to move to the next field in the message
+  24:Core/Src/gps.c ****         field++;
+  25:Core/Src/gps.c **** 
+  26:Core/Src/gps.c ****         // Extract fields based on their position in the GPGGA message
+  27:Core/Src/gps.c ****         switch (field) {
+  28:Core/Src/gps.c ****             case 3: // Latitude
+  29:Core/Src/gps.c ****                 strncpy(latitude, token, sizeof(latitude) - 1);
+  96              		.loc 1 29 17 is_stmt 1 view .LVU18
+  97 003c 0B22     		movs	r2, #11
+  98 003e 0BA8     		add	r0, sp, #44
+  99              	.LVL7:
+ 100              		.loc 1 29 17 is_stmt 0 view .LVU19
+ 101 0040 FFF7FEFF 		bl	strncpy
+ 102              	.LVL8:
+  30:Core/Src/gps.c ****                 break;
+ 103              		.loc 1 30 17 is_stmt 1 view .LVU20
+ 104              	.L3:
+  31:Core/Src/gps.c ****             case 4: // N or S indicator for latitude
+  32:Core/Src/gps.c ****                 strncat(latitude, token, 1);
+  33:Core/Src/gps.c ****                 break;
+  34:Core/Src/gps.c ****             case 5: // Longitude
+  35:Core/Src/gps.c ****                 strncpy(longitude, token, sizeof(longitude) - 1);
+  36:Core/Src/gps.c ****                 break;
+  37:Core/Src/gps.c ****             case 6: // E or W indicator for longitude
+  38:Core/Src/gps.c ****                 strncat(longitude, token, 1);
+  39:Core/Src/gps.c ****                 break;
+  40:Core/Src/gps.c ****             case 7: // GPS Fix
+  41:Core/Src/gps.c ****                 strncpy(gpsFix, token, sizeof(gpsFix) -1);
+  42:Core/Src/gps.c ****                 break;
+  43:Core/Src/gps.c ****             case 8: // Number of satellites
+  44:Core/Src/gps.c ****                 strncpy(numSatellites, token, sizeof(numSatellites) -1);
+  45:Core/Src/gps.c ****                 break;
+  46:Core/Src/gps.c ****             default:
+  47:Core/Src/gps.c ****                 break;
+  48:Core/Src/gps.c ****         }
+  49:Core/Src/gps.c **** 
+  50:Core/Src/gps.c ****         // Get next token
+  51:Core/Src/gps.c ****         token = strtok(NULL, ",");
+ 105              		.loc 1 51 9 view .LVU21
+ 106              		.loc 1 51 17 is_stmt 0 view .LVU22
+ 107 0044 2049     		ldr	r1, .L15
+ 108 0046 0020     		movs	r0, #0
+ 109 0048 FFF7FEFF 		bl	strtok
+ 110              	.LVL9:
+ 111 004c 0146     		mov	r1, r0
+ 112              	.LVL10:
+ 113              	.L2:
+  22:Core/Src/gps.c ****         // Increment field counter to move to the next field in the message
+ 114              		.loc 1 22 18 is_stmt 1 view .LVU23
+ 115 004e 61B3     		cbz	r1, .L14
+  24:Core/Src/gps.c **** 
+ 116              		.loc 1 24 9 view .LVU24
+  24:Core/Src/gps.c **** 
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 4
+
+
+ 117              		.loc 1 24 14 is_stmt 0 view .LVU25
+ 118 0050 0134     		adds	r4, r4, #1
+ 119              	.LVL11:
+  27:Core/Src/gps.c ****             case 3: // Latitude
+ 120              		.loc 1 27 9 is_stmt 1 view .LVU26
+ 121 0052 E31E     		subs	r3, r4, #3
+ 122 0054 052B     		cmp	r3, #5
+ 123 0056 F5D8     		bhi	.L3
+ 124 0058 01A2     		adr	r2, .L5
+ 125 005a 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 126 005e 00BF     		.p2align 2
+ 127              	.L5:
+ 128 0060 3D000000 		.word	.L10+1
+ 129 0064 79000000 		.word	.L9+1
+ 130 0068 83000000 		.word	.L8+1
+ 131 006c 8D000000 		.word	.L7+1
+ 132 0070 97000000 		.word	.L6+1
+ 133 0074 A1000000 		.word	.L4+1
+ 134              		.p2align 1
+ 135              	.L9:
+  32:Core/Src/gps.c ****                 break;
+ 136              		.loc 1 32 17 view .LVU27
+ 137 0078 0122     		movs	r2, #1
+ 138 007a 0BA8     		add	r0, sp, #44
+ 139              	.LVL12:
+  32:Core/Src/gps.c ****                 break;
+ 140              		.loc 1 32 17 is_stmt 0 view .LVU28
+ 141 007c FFF7FEFF 		bl	strncat
+ 142              	.LVL13:
+  33:Core/Src/gps.c ****             case 5: // Longitude
+ 143              		.loc 1 33 17 is_stmt 1 view .LVU29
+ 144 0080 E0E7     		b	.L3
+ 145              	.LVL14:
+ 146              	.L8:
+  35:Core/Src/gps.c ****                 break;
+ 147              		.loc 1 35 17 view .LVU30
+ 148 0082 0C22     		movs	r2, #12
+ 149 0084 07A8     		add	r0, sp, #28
+ 150              	.LVL15:
+  35:Core/Src/gps.c ****                 break;
+ 151              		.loc 1 35 17 is_stmt 0 view .LVU31
+ 152 0086 FFF7FEFF 		bl	strncpy
+ 153              	.LVL16:
+  36:Core/Src/gps.c ****             case 6: // E or W indicator for longitude
+ 154              		.loc 1 36 17 is_stmt 1 view .LVU32
+ 155 008a DBE7     		b	.L3
+ 156              	.LVL17:
+ 157              	.L7:
+  38:Core/Src/gps.c ****                 break;
+ 158              		.loc 1 38 17 view .LVU33
+ 159 008c 0122     		movs	r2, #1
+ 160 008e 07A8     		add	r0, sp, #28
+ 161              	.LVL18:
+  38:Core/Src/gps.c ****                 break;
+ 162              		.loc 1 38 17 is_stmt 0 view .LVU34
+ 163 0090 FFF7FEFF 		bl	strncat
+ 164              	.LVL19:
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 5
+
+
+  39:Core/Src/gps.c ****             case 7: // GPS Fix
+ 165              		.loc 1 39 17 is_stmt 1 view .LVU35
+ 166 0094 D6E7     		b	.L3
+ 167              	.LVL20:
+ 168              	.L6:
+  41:Core/Src/gps.c ****                 break;
+ 169              		.loc 1 41 17 view .LVU36
+ 170 0096 0122     		movs	r2, #1
+ 171 0098 06A8     		add	r0, sp, #24
+ 172              	.LVL21:
+  41:Core/Src/gps.c ****                 break;
+ 173              		.loc 1 41 17 is_stmt 0 view .LVU37
+ 174 009a FFF7FEFF 		bl	strncpy
+ 175              	.LVL22:
+  42:Core/Src/gps.c ****             case 8: // Number of satellites
+ 176              		.loc 1 42 17 is_stmt 1 view .LVU38
+ 177 009e D1E7     		b	.L3
+ 178              	.LVL23:
+ 179              	.L4:
+  44:Core/Src/gps.c ****                 break;
+ 180              		.loc 1 44 17 view .LVU39
+ 181 00a0 0222     		movs	r2, #2
+ 182 00a2 05A8     		add	r0, sp, #20
+ 183              	.LVL24:
+  44:Core/Src/gps.c ****                 break;
+ 184              		.loc 1 44 17 is_stmt 0 view .LVU40
+ 185 00a4 FFF7FEFF 		bl	strncpy
+ 186              	.LVL25:
+  45:Core/Src/gps.c ****             default:
+ 187              		.loc 1 45 17 is_stmt 1 view .LVU41
+ 188 00a8 CCE7     		b	.L3
+ 189              	.LVL26:
+ 190              	.L14:
+  52:Core/Src/gps.c ****     }
+  53:Core/Src/gps.c ****     snprintf(resultBuffer, bufferSize, "%s,%s,%s,%s", latitude, longitude, gpsFix, numSatellites);
+ 191              		.loc 1 53 5 view .LVU42
+ 192 00aa 05AB     		add	r3, sp, #20
+ 193 00ac 0293     		str	r3, [sp, #8]
+ 194 00ae 06AB     		add	r3, sp, #24
+ 195 00b0 0193     		str	r3, [sp, #4]
+ 196 00b2 07AB     		add	r3, sp, #28
+ 197 00b4 0093     		str	r3, [sp]
+ 198 00b6 0BAB     		add	r3, sp, #44
+ 199 00b8 044A     		ldr	r2, .L15+4
+ 200 00ba 3146     		mov	r1, r6
+ 201 00bc 2846     		mov	r0, r5
+ 202              	.LVL27:
+ 203              		.loc 1 53 5 is_stmt 0 view .LVU43
+ 204 00be FFF7FEFF 		bl	snprintf
+ 205              	.LVL28:
+  54:Core/Src/gps.c **** }
+ 206              		.loc 1 54 1 view .LVU44
+ 207 00c2 0FB0     		add	sp, sp, #60
+ 208              		.cfi_def_cfa_offset 20
+ 209              		@ sp needed
+ 210 00c4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 211              	.LVL29:
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 6
+
+
+ 212              	.L16:
+ 213              		.loc 1 54 1 view .LVU45
+ 214 00c6 00BF     		.align	2
+ 215              	.L15:
+ 216 00c8 00000000 		.word	.LC0
+ 217 00cc 04000000 		.word	.LC1
+ 218              		.cfi_endproc
+ 219              	.LFE135:
+ 221              		.section	.text.readGPSMessage,"ax",%progbits
+ 222              		.align	1
+ 223              		.global	readGPSMessage
+ 224              		.syntax unified
+ 225              		.thumb
+ 226              		.thumb_func
+ 228              	readGPSMessage:
+ 229              	.LVL30:
+ 230              	.LFB136:
+  55:Core/Src/gps.c **** 
+  56:Core/Src/gps.c **** 
+  57:Core/Src/gps.c **** HAL_StatusTypeDef readGPSMessage(I2C_HandleTypeDef *hi2c, uint8_t *message, uint16_t *size) {
+ 231              		.loc 1 57 93 is_stmt 1 view -0
+ 232              		.cfi_startproc
+ 233              		@ args = 0, pretend = 0, frame = 8
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ 235              		.loc 1 57 93 is_stmt 0 view .LVU47
+ 236 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 237              		.cfi_def_cfa_offset 24
+ 238              		.cfi_offset 4, -24
+ 239              		.cfi_offset 5, -20
+ 240              		.cfi_offset 6, -16
+ 241              		.cfi_offset 7, -12
+ 242              		.cfi_offset 8, -8
+ 243              		.cfi_offset 14, -4
+ 244 0004 86B0     		sub	sp, sp, #24
+ 245              		.cfi_def_cfa_offset 48
+ 246 0006 0546     		mov	r5, r0
+ 247 0008 0F46     		mov	r7, r1
+ 248 000a 1646     		mov	r6, r2
+  58:Core/Src/gps.c ****     uint8_t availableBytesHigh = 0, availableBytesLow = 0;
+ 249              		.loc 1 58 5 is_stmt 1 view .LVU48
+ 250              		.loc 1 58 13 is_stmt 0 view .LVU49
+ 251 000c 0023     		movs	r3, #0
+ 252 000e 8DF81730 		strb	r3, [sp, #23]
+ 253              		.loc 1 58 37 view .LVU50
+ 254 0012 8DF81630 		strb	r3, [sp, #22]
+  59:Core/Src/gps.c ****     uint16_t availableBytes = 0;
+ 255              		.loc 1 59 5 is_stmt 1 view .LVU51
+ 256              	.LVL31:
+  60:Core/Src/gps.c ****     
+  61:Core/Src/gps.c ****     // Read the high part of the available bytes
+  62:Core/Src/gps.c ****     HAL_I2C_Mem_Read(hi2c, I2C_ADDRESS_GPS, 0xFD, I2C_MEMADD_SIZE_8BIT, &availableBytesHigh, 1, HAL
+ 257              		.loc 1 62 5 view .LVU52
+ 258 0016 4FF0FF38 		mov	r8, #-1
+ 259 001a CDF80880 		str	r8, [sp, #8]
+ 260 001e 0124     		movs	r4, #1
+ 261 0020 0194     		str	r4, [sp, #4]
+ 262 0022 0DF11703 		add	r3, sp, #23
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 7
+
+
+ 263 0026 0093     		str	r3, [sp]
+ 264 0028 2346     		mov	r3, r4
+ 265 002a FD22     		movs	r2, #253
+ 266              	.LVL32:
+ 267              		.loc 1 62 5 is_stmt 0 view .LVU53
+ 268 002c 8421     		movs	r1, #132
+ 269              	.LVL33:
+ 270              		.loc 1 62 5 view .LVU54
+ 271 002e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 272              	.LVL34:
+  63:Core/Src/gps.c **** 
+  64:Core/Src/gps.c ****     // Read the low part of the available bytes
+  65:Core/Src/gps.c ****     HAL_I2C_Mem_Read(hi2c, I2C_ADDRESS_GPS, 0xFE, I2C_MEMADD_SIZE_8BIT, &availableBytesLow, 1, HAL_
+ 273              		.loc 1 65 5 is_stmt 1 view .LVU55
+ 274 0032 CDF80880 		str	r8, [sp, #8]
+ 275 0036 0194     		str	r4, [sp, #4]
+ 276 0038 0DF11603 		add	r3, sp, #22
+ 277 003c 0093     		str	r3, [sp]
+ 278 003e 2346     		mov	r3, r4
+ 279 0040 FE22     		movs	r2, #254
+ 280 0042 8421     		movs	r1, #132
+ 281 0044 2846     		mov	r0, r5
+ 282 0046 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 283              	.LVL35:
+  66:Core/Src/gps.c **** 
+  67:Core/Src/gps.c ****     // Combine the high and low parts of the available bytes
+  68:Core/Src/gps.c ****     availableBytes = (uint16_t)((availableBytesHigh << 8) | availableBytesLow);
+ 284              		.loc 1 68 5 view .LVU56
+ 285              		.loc 1 68 59 is_stmt 0 view .LVU57
+ 286 004a 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
+ 287 004e 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 288              	.LVL36:
+  69:Core/Src/gps.c **** 
+  70:Core/Src/gps.c ****     // Assume buffer size is always sufficient and read the available bytes from the message stream
+  71:Core/Src/gps.c ****     if(availableBytes > 0) {
+ 289              		.loc 1 71 5 is_stmt 1 view .LVU58
+ 290              		.loc 1 71 7 is_stmt 0 view .LVU59
+ 291 0052 53EA0224 		orrs	r4, r3, r2, lsl #8
+ 292              	.LVL37:
+ 293              		.loc 1 71 7 view .LVU60
+ 294 0056 05D1     		bne	.L21
+  72:Core/Src/gps.c ****         HAL_I2C_Mem_Read(hi2c, I2C_ADDRESS_GPS, 0xFF, I2C_MEMADD_SIZE_8BIT, message, availableBytes
+  73:Core/Src/gps.c ****         *size = availableBytes; // Set the actual size read
+  74:Core/Src/gps.c ****         return HAL_OK; // Indicate data was read
+  75:Core/Src/gps.c ****     } else {
+  76:Core/Src/gps.c ****         *size = 0; // Set size to 0 to indicate no data was read
+ 295              		.loc 1 76 9 is_stmt 1 view .LVU61
+ 296              		.loc 1 76 15 is_stmt 0 view .LVU62
+ 297 0058 0023     		movs	r3, #0
+ 298 005a 3380     		strh	r3, [r6]	@ movhi
+  77:Core/Src/gps.c ****         return HAL_OK; // Still return HAL_OK indicating the operation was successful but no data
+ 299              		.loc 1 77 9 is_stmt 1 view .LVU63
+ 300              	.L19:
+  78:Core/Src/gps.c ****     }
+  79:Core/Src/gps.c **** }
+ 301              		.loc 1 79 1 is_stmt 0 view .LVU64
+ 302 005c 0020     		movs	r0, #0
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 8
+
+
+ 303 005e 06B0     		add	sp, sp, #24
+ 304              		.cfi_remember_state
+ 305              		.cfi_def_cfa_offset 24
+ 306              		@ sp needed
+ 307 0060 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 308              	.LVL38:
+ 309              	.L21:
+ 310              		.cfi_restore_state
+  72:Core/Src/gps.c ****         *size = availableBytes; // Set the actual size read
+ 311              		.loc 1 72 9 is_stmt 1 view .LVU65
+ 312 0064 CDF80880 		str	r8, [sp, #8]
+ 313 0068 0194     		str	r4, [sp, #4]
+ 314 006a 0097     		str	r7, [sp]
+ 315 006c 0123     		movs	r3, #1
+ 316 006e FF22     		movs	r2, #255
+ 317 0070 8421     		movs	r1, #132
+ 318 0072 2846     		mov	r0, r5
+ 319 0074 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 320              	.LVL39:
+  73:Core/Src/gps.c ****         return HAL_OK; // Indicate data was read
+ 321              		.loc 1 73 9 view .LVU66
+  73:Core/Src/gps.c ****         return HAL_OK; // Indicate data was read
+ 322              		.loc 1 73 15 is_stmt 0 view .LVU67
+ 323 0078 3480     		strh	r4, [r6]	@ movhi
+  74:Core/Src/gps.c ****     } else {
+ 324              		.loc 1 74 9 is_stmt 1 view .LVU68
+  74:Core/Src/gps.c ****     } else {
+ 325              		.loc 1 74 16 is_stmt 0 view .LVU69
+ 326 007a EFE7     		b	.L19
+ 327              		.cfi_endproc
+ 328              	.LFE136:
+ 330              		.text
+ 331              	.Letext0:
+ 332              		.file 2 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 333              		.file 3 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 334              		.file 4 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 335              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+ 336              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 337              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 338              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
+ 339              		.file 9 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 340              		.file 10 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 341              		.file 11 "<built-in>"
+ARM GAS  C:\Users\John_\AppData\Local\Temp\cc6htJFe.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gps.c
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:21     .rodata.processGPSMessage.str1.4:00000000 $d
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:28     .text.processGPSMessage:00000000 $t
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:34     .text.processGPSMessage:00000000 processGPSMessage
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:128    .text.processGPSMessage:00000060 $d
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:134    .text.processGPSMessage:00000078 $t
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:216    .text.processGPSMessage:000000c8 $d
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:222    .text.readGPSMessage:00000000 $t
+C:\Users\John_\AppData\Local\Temp\cc6htJFe.s:228    .text.readGPSMessage:00000000 readGPSMessage
+
+UNDEFINED SYMBOLS
+memset
+strtok
+strncpy
+strncat
+snprintf
+HAL_I2C_Mem_Read

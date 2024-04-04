@@ -1,7 +1,6 @@
 /*
  * ms5803.c
  *
-
  */
 
 #include "ms5803.h"
@@ -14,7 +13,7 @@
  * @retval HAL Status
  */
 HAL_StatusTypeDef MS5803_read(void *handle, uint8_t *bufp, uint16_t len) {
-	return HAL_I2C_Master_Receive(handle, MS5803_ADDR, bufp, len, 1000);
+	return HAL_I2C_Master_Receive(handle, MS5803_ADDR, bufp, len, 1);
 }
 
 /**
@@ -25,7 +24,7 @@ HAL_StatusTypeDef MS5803_read(void *handle, uint8_t *bufp, uint16_t len) {
  * @retval HAL Status
  */
 HAL_StatusTypeDef MS5803_write(void *handle, uint8_t *bufp, uint16_t len) {
-	return HAL_I2C_Master_Transmit(handle, MS5803_ADDR, bufp, len, 1000);
+	return HAL_I2C_Master_Transmit(handle, MS5803_ADDR, bufp, len, 1);
 }
 
 /**
@@ -36,7 +35,7 @@ HAL_StatusTypeDef MS5803_write(void *handle, uint8_t *bufp, uint16_t len) {
 HAL_StatusTypeDef MS5803_reset(I2C_HandleTypeDef *handle) {
 	uint8_t buf[12];
 	buf[0] = MS5803_RESET;
-	HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(handle, MS5803_ADDR, MS5803_RESET, 1, 1000);
+	HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(handle, MS5803_ADDR, MS5803_RESET, 1, 1);
 	HAL_Delay(3);
 	return ret;
 }
@@ -71,9 +70,13 @@ uint32_t MS5803_ADC(void *handle, measurement type, precision prec) {
 	uint8_t buf[12];
 	buf[0] = MS5803_ADC_CONV + type + prec; //tell the ADC to convert along with the precision and type
 	MS5803_write(handle, buf, 1);
-	HAL_Delay(1);
+	for (size_t i = 0; i < 22000; i++)
+	{
+		/* code */ //tilsvarer 650 usek delay
+	}
+	
 	switch(prec) {
-		case ADC_256: HAL_Delay(1);
+		case ADC_256:
 		break;
 		case ADC_512: HAL_Delay(3);
 		break;
@@ -85,7 +88,7 @@ uint32_t MS5803_ADC(void *handle, measurement type, precision prec) {
 	}
 	buf[0] = MS5803_ADC_READ; //Tell the MS5803 that we want to read the ADC
 	MS5803_write(handle, buf, 1);
-	HAL_Delay(2);
+	//HAL_Delay(0.7);
 	uint8_t c[3];
 	volatile HAL_StatusTypeDef test = MS5803_read(handle, c, 3); //Read out the ADC
 

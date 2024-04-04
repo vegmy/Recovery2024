@@ -57,7 +57,20 @@
 /* External variables --------------------------------------------------------*/
 
 /* USER CODE BEGIN EV */
-extern volatile uint8_t tellerflagg;
+extern volatile uint8_t tender_flagg; 
+extern volatile uint8_t tender_aktiv;  
+extern volatile uint8_t trans2_flagg;
+extern volatile uint8_t trans2_reset;
+extern volatile uint8_t trans4_flagg;
+extern volatile uint8_t trans4_reset;
+extern volatile uint8_t trans6_flagg;
+extern volatile uint8_t trans6_reset;
+extern volatile uint8_t gps_flagg;
+extern volatile uint8_t gps_meas;
+extern volatile uint8_t trykk_flagg;
+extern volatile uint8_t trykk_meas;
+extern volatile uint8_t reservekrets_flagg;
+extern volatile uint8_t reservekrets;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -183,20 +196,85 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-  // static uint8_t teller = 0u;
+  static uint16_t teller0 = 0u;
 
-  // if (tellerflagg != 0u )
-  // {
-  //   teller++;
-  //   if (teller >= 100000)
-  //   {
-  //     HAL_GPIO_WritePin(GPIO_OUT_TRANS6_GPIO_Port,GPIO_OUT_TRANS6_Pin,GPIO_PIN_SET);
-  //   }
-  // }
+  if (tender_flagg != 0u )
+  {
+   teller0++;
+    if (teller0 >= 30000) // daniel vil ha 8 sekunds timer husk å bytt!!!!!
+    {
+     tender_aktiv = 1;
+     teller0 = 0;
+     }
+  }
+  static uint16_t teller1 = 0u;
+
+  if (trans2_flagg != 0u )
+  {
+   teller1++;
+    if (teller1 >= 2000)
+    {
+     trans2_reset = 1;
+     teller1 = 0;
+     }
+  }
+  static uint16_t teller2 = 0u;
+
+  if (trans4_flagg != 0u )
+  {
+   teller2++;
+    if (teller2 >= 2000)
+    {
+     trans4_reset = 1;
+     teller2 = 0;
+     }
+  }
+  static uint16_t teller3 = 0u;
+
+  if (trans6_flagg != 0u )
+  {
+   teller3++;
+    if (teller3 >= 2000)
+    {
+     trans6_reset = 1;
+     teller3 = 0;
+     }
+  }
+  static uint8_t teller4 = 0u;
+
+  if (gps_flagg != 0u )
+  {
+   teller4++;
+    if (teller4 >= 100)
+    {
+     gps_meas = 1;
+     teller4 = 0;
+     }
+  }
+  static uint8_t teller5 = 0u;
+
+  if (trykk_flagg != 0u )
+  {
+   teller5++;
+    if (teller5 >= 20)
+    {
+     trykk_meas = 1;
+     teller5 = 0;
+     }
+  }
+  static uint16_t teller6 = 0u;
+
+  if (reservekrets_flagg != 0u )
+  {
+   teller6++;
+    if (teller6 >= 3000)
+    {
+     reservekrets = 1;
+     teller6 = 0;
+     }
+  }
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
-  
-  
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */

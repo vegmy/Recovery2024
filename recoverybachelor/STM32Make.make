@@ -37,10 +37,12 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Src/gpio.c \
+Core/Src/gps.c \
 Core/Src/i2c.c \
 Core/Src/main.c \
 Core/Src/ms5803.c \
 Core/Src/spi.c \
+Core/Src/state.c \
 Core/Src/stm32g4xx_hal_msp.c \
 Core/Src/stm32g4xx_it.c \
 Core/Src/system_stm32g4xx.c \

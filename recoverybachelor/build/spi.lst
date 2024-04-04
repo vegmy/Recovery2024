@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
   28:Core/Src/spi.c **** 
   29:Core/Src/spi.c **** /* SPI3 init function */
   30:Core/Src/spi.c **** void MX_SPI3_Init(void)
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 2
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 2
 
 
   31:Core/Src/spi.c **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
   48:Core/Src/spi.c ****   hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
   66              		.loc 1 48 3 is_stmt 1 view .LVU17
   67              		.loc 1 48 21 is_stmt 0 view .LVU18
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 3
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 3
 
 
   68 0020 4362     		str	r3, [r0, #36]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
  109              		.thumb
  110              		.thumb_func
  112              	HAL_SPI_MspInit:
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 4
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 4
 
 
  113              	.LVL2:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
   87:Core/Src/spi.c **** 
   88:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
   89:Core/Src/spi.c **** 
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 5
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 5
 
 
   90:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
  181              		.loc 1 75 5 view .LVU52
   81:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  182              		.loc 1 81 5 view .LVU53
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 6
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 6
 
 
   81:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
  227              		.loc 1 95 1 is_stmt 0 view .LVU65
  228 0000 08B5     		push	{r3, lr}
  229              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 7
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 7
 
 
  230              		.cfi_offset 3, -8
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
  260              		.align	2
  261              	.L17:
  262 0020 003C0040 		.word	1073757184
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 8
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 8
 
 
  263 0024 00100240 		.word	1073876992
@@ -445,22 +445,22 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 1
  283              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
  284              		.file 9 "Core/Inc/spi.h"
  285              		.file 10 "Core/Inc/main.h"
-ARM GAS  C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s 			page 9
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:21     .text.MX_SPI3_Init:00000000 $t
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:100    .text.MX_SPI3_Init:0000003c $d
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:273    .bss.hspi3:00000000 hspi3
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:106    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:112    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:208    .text.HAL_SPI_MspInit:0000005c $d
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:214    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:220    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:262    .text.HAL_SPI_MspDeInit:00000020 $d
-C:\Users\John_\AppData\Local\Temp\ccGSdfCh.s:270    .bss.hspi3:00000000 $d
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:21     .text.MX_SPI3_Init:00000000 $t
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:100    .text.MX_SPI3_Init:0000003c $d
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:273    .bss.hspi3:00000000 hspi3
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:106    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:112    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:208    .text.HAL_SPI_MspInit:0000005c $d
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:214    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:220    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:262    .text.HAL_SPI_MspDeInit:00000020 $d
+C:\Users\John_\AppData\Local\Temp\ccglJ0wm.s:270    .bss.hspi3:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

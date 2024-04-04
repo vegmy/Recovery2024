@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 1
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 1
   28:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32g4xx_hal_msp.c **** 
   30:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE END TD */
-ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 2
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s 			page 2
 
 
   31:Core/Src/stm32g4xx_hal_msp.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 1
   44              		.loc 1 69 3 view .LVU4
   45 000c 1A6E     		ldr	r2, [r3, #96]
   46 000e 02F00102 		and	r2, r2, #1
-ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 3
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s 			page 3
 
 
   47 0012 0092     		str	r2, [sp]
@@ -165,13 +165,13 @@ ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 1
   81              		.file 2 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
   82              		.file 3 "C:/Users/John_/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
   83              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
-ARM GAS  C:\Users\John_\AppData\Local\Temp\cc2pgHak.s 			page 4
+ARM GAS  C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_msp.c
-C:\Users\John_\AppData\Local\Temp\cc2pgHak.s:21     .text.HAL_MspInit:00000000 $t
-C:\Users\John_\AppData\Local\Temp\cc2pgHak.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
-C:\Users\John_\AppData\Local\Temp\cc2pgHak.s:75     .text.HAL_MspInit:0000002c $d
+C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s:21     .text.HAL_MspInit:00000000 $t
+C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\John_\AppData\Local\Temp\ccWOMKzv.s:75     .text.HAL_MspInit:0000002c $d
 
 NO UNDEFINED SYMBOLS
