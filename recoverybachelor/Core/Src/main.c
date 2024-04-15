@@ -29,6 +29,8 @@
 #include "stdio.h"
 #include "string.h"
 #include "stdint.h"
+#include "spi_slave_module.h"
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,7 +53,9 @@
 /* USER CODE BEGIN PV */
 uint16_t MS5803_coefficient[6];
 #define NUM_MEASUREMENTS 1200
-  volatile uint8_t tellerflagg = 0u;
+volatile uint8_t tellerflagg = 0u;
+volatile uint8_t rx_data[12];
+uint8_t gps_data[12] = {PASSIVE, 0xd1, 0xd1, 0xd1, 0xd2, 0xd2, 0xd2, 0xd2, 0xd3, 0xd3, 0xd3, 0xd3};
 
 /* USER CODE END PV */
 
@@ -138,7 +142,21 @@ int main(void)
   // }
   while (1)
   {
+    gps_data[0] = PASSIVE;
+    gps_data[1] = 0xd1;
+    gps_data[2] = 0xd1;
+    gps_data[3] = 0xd1;
+    gps_data[4] = 0xd2;
+    gps_data[5] = 0xd2;
+    gps_data[6] = 0xd2;
+    gps_data[7] = 0xd2;
+    gps_data[8] = 0xd3;
+    gps_data[9] = 0xd3;
+    gps_data[10] = 0xd3;
+    gps_data[11] = 0xd3;
 
+  
+    
   // volatile GPIO_PinState dio1_em1 = HAL_GPIO_ReadPin(GPIO_IN_DIO1_GPIO_Port,GPIO_IN_DIO1_Pin); // Måling av verdi fra d1
   // volatile GPIO_PinState dio2_em2 = HAL_GPIO_ReadPin(GPIO_IN_DIO2_GPIO_Port,GPIO_IN_DIO2_Pin); // Måling av verdi fra d2
   // volatile GPIO_PinState dio3_td1 = HAL_GPIO_ReadPin(GPIO_IN_DIO3_GPIO_Port,GPIO_IN_DIO3_Pin); // Måling av verdi fra d3
@@ -221,6 +239,115 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+
+void SPI_WAIT_NOT_BUSY(SPI_TypeDef *SPIx)
+{
+    while ((SPIx->SR & SPI_SR_BSY));
+}
+
+void SPI_WAIT_TXE(SPI_TypeDef *SPIx)
+{
+    while (!(SPIx->SR & SPI_SR_TXE));
+}
+uint8_t SPI_READ_DR(SPI_TypeDef *SPIx)
+{
+    return (uint8_t)(SPIx->DR);
+}
+void SPI_CLEAR_DR(SPI_TypeDef *SPIx)
+{
+    (void)(SPIx->DR);
+}
+void SPI_WAIT_RXNE(SPI_TypeDef *SPIx)
+{
+    while (!(SPIx->SR & SPI_SR_RXNE));
+}
+void SPI_WRITE_DR(SPI_TypeDef *SPIx, uint8_t DATA)
+{
+   * ((volatile uint8_t *)&(SPIx->DR)) = DATA;
+}
+void enable_spi(SPI_TypeDef *SPIx)
+{
+    SPIx->CR1 |= SPI_CR1_SPE; // enabling SPI
+}
+
+void disable_spi(SPI_TypeDef *SPIx)
+{
+    SPIx->CR1 &= ~SPI_CR1_SPE; // disable SPI
+}
+HAL_StatusTypeDef SPI_Transmit(SPI_TypeDef *SPIx, uint8_t *ptr_SendData, uint16_t Size)
+{
+    enable_spi(SPIx);
+    // Add your own logic for asserting CS here
+
+    for (size_t i = 0; i < Size; i++)
+    {
+        SPI_WAIT_TXE(SPIx); // waiting until transmit buffer is empty
+        SPI_WRITE_DR(SPIx, ptr_SendData[i]); // data register is receiving the commands from the array[i]
+        SPI_WAIT_RXNE(SPIx); // polling data on Receive buffer not empty(RXNE) so we know the data has been received
+        // if (!spi_wait_rxne_timeout(SPIx, 10))
+        // {
+        //     return HAL_TIMEOUT;
+        // }
+        // reading the received data from SPI data register so the RXNE flag gets cleared. This is used for full-duplex transmit. The reason I dont have it as a parameter because most of the data will be garbage. Its just used to clear the buffer.
+        SPI_CLEAR_DR(SPIx); // casting to void so I can ignore compiler warning on unused variables
+    }
+    SPI_WAIT_NOT_BUSY(SPIx); // checking when SPI is ready.
+    // add your own logic for deasserting CS here
+    disable_spi(SPIx);
+    return HAL_OK;
+}
+
+HAL_StatusTypeDef SPI_Receive(SPI_TypeDef *SPIx, uint8_t *ptr_ReceiveData, uint16_t Size)
+{
+    enable_spi(SPIx);
+    // Add your own logic for asserting CS here
+    for (size_t i = 0; i < Size; i++)
+    {
+        // SPI_WAIT_NOT_BUSY(SPIx); // checking when SPI is ready.
+        SPI_WAIT_TXE(SPIx);
+        SPI_WRITE_DR(SPIx, 0xFF); // clocking out dummy bytes
+        // if (!spi_wait_rxne_timeout(SPIx, 10))
+        // {
+        //     return HAL_TIMEOUT;
+        // }
+        SPI_WAIT_RXNE(SPIx);
+        ptr_ReceiveData[i] = SPI_READ_DR(SPIx);
+    }
+    SPI_WAIT_NOT_BUSY(SPIx);
+    return HAL_OK;
+}
+
+HAL_StatusTypeDef SPI_TransmitReceive(SPI_TypeDef *SPIx, uint8_t *ptr_SendData, uint8_t *ptr_ReceiveData, uint16_t Size)
+{
+    enable_spi(SPIx);
+    // Add your own logic for asserting CS here
+
+    for (size_t i = 0; i < Size; i++)
+    {
+        SPI_WAIT_TXE(SPIx); // Wait until transmit buffer is empty
+        SPI_WRITE_DR(SPIx, ptr_SendData[i]); // Send data
+        SPI_WAIT_RXNE(SPIx); // Wait for the data to be received
+        // Wait for the data to be received
+        // if (!spi_wait_rxne_timeout(SPIx, 10))
+        // {
+        //     // Optionally, deassert CS here
+        //     disable_spi(SPIx);
+        //     return HAL_TIMEOUT;
+        // }
+
+        // Read the received data
+        ptr_ReceiveData[i] = SPI_READ_DR(SPIx);
+    }
+
+    // Wait until SPI is not busy to ensure all data has been exchanged
+    SPI_WAIT_NOT_BUSY(SPIx);
+
+    // Optionally, deassert CS here
+    disable_spi(SPIx);
+    return HAL_OK;
+}
+
 
 /* USER CODE END 4 */
 

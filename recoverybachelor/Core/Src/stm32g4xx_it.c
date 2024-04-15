@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32g4xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32g4xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -24,6 +24,8 @@
 /* USER CODE BEGIN Includes */
 #include "stdint.h"
 #include "spi_slave_module.h"
+#include "string.h"
+#include "spi.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,8 +45,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-uint8_t static rec_status = IDLE;
-static uint8_t rx_data[12];
+uint8_t rec_status = PASSIVE;
+extern uint8_t rx_data[12];
+extern uint8_t gps_data[12];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,9 +61,9 @@ static uint8_t rx_data[12];
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern SPI_HandleTypeDef hspi3;
+
 /* USER CODE BEGIN EV */
-extern volatile uint8_t tellerflagg;
+extern SPI_HandleTypeDef hspi3;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -186,16 +189,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-  // static uint8_t teller = 0u;
 
-  // if (tellerflagg != 0u )
-  // {
-  //   teller++;
-  //   if (teller >= 100000)
-  //   {
-  //     HAL_GPIO_WritePin(GPIO_OUT_TRANS6_GPIO_Port,GPIO_OUT_TRANS6_Pin,GPIO_PIN_SET);
-  //   }
-  // }
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
@@ -216,42 +210,33 @@ void SysTick_Handler(void)
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-  uint8_t gps_data[12] = {rec_status, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb, 0xdb};
-  
-  HAL_SPI_TransmitReceive(&hspi3, gps_data, rx_data, 12, 1000);
 
-  switch (rx_data[0])
-  {
-
-  case RELASE_DROUGE_CHUTE:
-    rec_status = E_MATCH_M;
-    // Set flag for seperation. Make logic for redundant e-match.
-
-  case RELEASE_MAIN_CHUTE:
-    rec_status = E_MATCH_M;
-
-  default:
-    break;
-  }
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(CS_Pin);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
+    // HAL_SPI_Init(&hspi3);
+
+    HAL_SPI_TransmitReceive(&hspi3, gps_data, rx_data, 12, 1000);
+    // SPI_TransmitReceive(hspi3.Instance, gps_data, rx_data, 12);
+
+    switch (rx_data[0])
+    {
+    case RELASE_DROUGE_CHUTE:
+      gps_data[0] = SEPARATION; // Make logic for seperation
+      break;
+
+    case RELEASE_MAIN_CHUTE:
+      gps_data[0] = MAIN_CHUTE;
+      break;
+
+    default:
+      break;
+    }
+
+    // HAL_SPI_DeInit(&hspi3);
+    
   /* USER CODE END EXTI15_10_IRQn 1 */
-}
-
-/**
-  * @brief This function handles SPI3 global interrupt.
-  */
-void SPI3_IRQHandler(void)
-{
-  /* USER CODE BEGIN SPI3_IRQn 0 */
-
-  /* USER CODE END SPI3_IRQn 0 */
-  HAL_SPI_IRQHandler(&hspi3);
-  /* USER CODE BEGIN SPI3_IRQn 1 */
-
-  /* USER CODE END SPI3_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

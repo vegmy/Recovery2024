@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
   28:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
   29:Core/Src/gpio.c **** /* Configure GPIO                                                             */
   30:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 2
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 2
 
 
   31:Core/Src/gpio.c **** /* USER CODE BEGIN 1 */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
   49:Core/Src/gpio.c ****   __HAL_RCC_GPIOB_CLK_ENABLE();
   65              		.loc 1 49 3 view .LVU9
   66              	.LBB3:
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 3
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 3
 
 
   67              		.loc 1 49 3 view .LVU10
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
  107              	.LVL2:
   64:Core/Src/gpio.c **** 
   65:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 4
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 4
 
 
   66:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_IN_DIO1_Pin;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
  147 0090 4FF40413 		mov	r3, #2162688
  148 0094 0493     		str	r3, [sp, #16]
   81:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 5
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 5
 
 
  149              		.loc 1 81 3 is_stmt 1 view .LVU44
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
  189 00c6 70BD     		pop	{r4, r5, r6, pc}
  190              	.L4:
  191              		.align	2
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 6
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 6
 
 
  192              	.L3:
@@ -313,14 +313,14 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 1
  202              		.file 4 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
  203              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
  204              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s 			page 7
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio.c
-C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s:21     .text.MX_GPIO_Init:00000000 $t
-C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s:27     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\vmyhr\AppData\Local\Temp\ccyLGBqH.s:193    .text.MX_GPIO_Init:000000c8 $d
+C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s:21     .text.MX_GPIO_Init:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s:27     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\vmyhr\AppData\Local\Temp\ccOghNo7.s:193    .text.MX_GPIO_Init:000000c8 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

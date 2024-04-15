@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
   28:Core/Src/spi.c **** 
   29:Core/Src/spi.c **** /* SPI3 init function */
   30:Core/Src/spi.c **** void MX_SPI3_Init(void)
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 2
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 2
 
 
   31:Core/Src/spi.c **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
   48:Core/Src/spi.c ****   hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
   66              		.loc 1 48 3 is_stmt 1 view .LVU17
   67              		.loc 1 48 21 is_stmt 0 view .LVU18
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 3
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 3
 
 
   68 0020 4362     		str	r3, [r0, #36]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
  109              		.thumb
  110              		.thumb_func
  112              	HAL_SPI_MspInit:
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 4
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 4
 
 
  113              	.LVL2:
@@ -211,7 +211,7 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
  134              		.loc 1 67 15 is_stmt 0 view .LVU38
  135 0010 0268     		ldr	r2, [r0]
  136              		.loc 1 67 5 view .LVU39
- 137 0012 164B     		ldr	r3, .L11
+ 137 0012 124B     		ldr	r3, .L11
  138 0014 9A42     		cmp	r2, r3
  139 0016 02D0     		beq	.L10
  140              	.LVL3:
@@ -236,18 +236,15 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
   85:Core/Src/spi.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
   86:Core/Src/spi.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   87:Core/Src/spi.c **** 
-  88:Core/Src/spi.c ****     /* SPI3 interrupt Init */
-  89:Core/Src/spi.c ****     HAL_NVIC_SetPriority(SPI3_IRQn, 0, 0);
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 5
+  88:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
+  89:Core/Src/spi.c **** 
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 5
 
 
-  90:Core/Src/spi.c ****     HAL_NVIC_EnableIRQ(SPI3_IRQn);
-  91:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
-  92:Core/Src/spi.c **** 
-  93:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
-  94:Core/Src/spi.c ****   }
-  95:Core/Src/spi.c **** }
- 142              		.loc 1 95 1 view .LVU40
+  90:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
+  91:Core/Src/spi.c ****   }
+  92:Core/Src/spi.c **** }
+ 142              		.loc 1 92 1 view .LVU40
  143 0018 09B0     		add	sp, sp, #36
  144              		.cfi_remember_state
  145              		.cfi_def_cfa_offset 4
@@ -298,12 +295,12 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
  179 0044 029B     		ldr	r3, [sp, #8]
  180              	.LBE3:
   75:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 6
-
-
  181              		.loc 1 75 5 view .LVU52
   81:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  182              		.loc 1 81 5 view .LVU53
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 6
+
+
   81:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  183              		.loc 1 81 25 is_stmt 0 view .LVU54
  184 0046 3823     		movs	r3, #56
@@ -327,169 +324,146 @@ ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 1
   86:Core/Src/spi.c **** 
  196              		.loc 1 86 5 is_stmt 1 view .LVU61
  197 0052 03A9     		add	r1, sp, #12
- 198 0054 0648     		ldr	r0, .L11+4
+ 198 0054 0248     		ldr	r0, .L11+4
  199              	.LVL5:
   86:Core/Src/spi.c **** 
  200              		.loc 1 86 5 is_stmt 0 view .LVU62
  201 0056 FFF7FEFF 		bl	HAL_GPIO_Init
  202              	.LVL6:
-  89:Core/Src/spi.c ****     HAL_NVIC_EnableIRQ(SPI3_IRQn);
- 203              		.loc 1 89 5 is_stmt 1 view .LVU63
- 204 005a 0022     		movs	r2, #0
- 205 005c 1146     		mov	r1, r2
- 206 005e 3320     		movs	r0, #51
- 207 0060 FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 208              	.LVL7:
-  90:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
- 209              		.loc 1 90 5 view .LVU64
- 210 0064 3320     		movs	r0, #51
- 211 0066 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 212              	.LVL8:
- 213              		.loc 1 95 1 is_stmt 0 view .LVU65
- 214 006a D5E7     		b	.L7
- 215              	.L12:
- 216              		.align	2
- 217              	.L11:
- 218 006c 003C0040 		.word	1073757184
- 219 0070 00040048 		.word	1207960576
- 220              		.cfi_endproc
- 221              	.LFE133:
- 223              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
- 224              		.align	1
- 225              		.global	HAL_SPI_MspDeInit
- 226              		.syntax unified
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 7
+ 203              		.loc 1 92 1 view .LVU63
+ 204 005a DDE7     		b	.L7
+ 205              	.L12:
+ 206              		.align	2
+ 207              	.L11:
+ 208 005c 003C0040 		.word	1073757184
+ 209 0060 00040048 		.word	1207960576
+ 210              		.cfi_endproc
+ 211              	.LFE133:
+ 213              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
+ 214              		.align	1
+ 215              		.global	HAL_SPI_MspDeInit
+ 216              		.syntax unified
+ 217              		.thumb
+ 218              		.thumb_func
+ 220              	HAL_SPI_MspDeInit:
+ 221              	.LVL7:
+ 222              	.LFB134:
+  93:Core/Src/spi.c **** 
+  94:Core/Src/spi.c **** void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
+  95:Core/Src/spi.c **** {
+ 223              		.loc 1 95 1 is_stmt 1 view -0
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227              		.loc 1 95 1 is_stmt 0 view .LVU65
+ 228 0000 08B5     		push	{r3, lr}
+ 229              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 7
 
 
- 227              		.thumb
- 228              		.thumb_func
- 230              	HAL_SPI_MspDeInit:
- 231              	.LVL9:
- 232              	.LFB134:
+ 230              		.cfi_offset 3, -8
+ 231              		.cfi_offset 14, -4
   96:Core/Src/spi.c **** 
-  97:Core/Src/spi.c **** void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
-  98:Core/Src/spi.c **** {
- 233              		.loc 1 98 1 is_stmt 1 view -0
- 234              		.cfi_startproc
- 235              		@ args = 0, pretend = 0, frame = 0
- 236              		@ frame_needed = 0, uses_anonymous_args = 0
- 237              		.loc 1 98 1 is_stmt 0 view .LVU67
- 238 0000 08B5     		push	{r3, lr}
- 239              		.cfi_def_cfa_offset 8
- 240              		.cfi_offset 3, -8
- 241              		.cfi_offset 14, -4
-  99:Core/Src/spi.c **** 
- 100:Core/Src/spi.c ****   if(spiHandle->Instance==SPI3)
- 242              		.loc 1 100 3 is_stmt 1 view .LVU68
- 243              		.loc 1 100 15 is_stmt 0 view .LVU69
- 244 0002 0268     		ldr	r2, [r0]
- 245              		.loc 1 100 5 view .LVU70
- 246 0004 084B     		ldr	r3, .L17
- 247 0006 9A42     		cmp	r2, r3
- 248 0008 00D0     		beq	.L16
- 249              	.LVL10:
- 250              	.L13:
- 101:Core/Src/spi.c ****   {
- 102:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 0 */
+  97:Core/Src/spi.c ****   if(spiHandle->Instance==SPI3)
+ 232              		.loc 1 97 3 is_stmt 1 view .LVU66
+ 233              		.loc 1 97 15 is_stmt 0 view .LVU67
+ 234 0002 0268     		ldr	r2, [r0]
+ 235              		.loc 1 97 5 view .LVU68
+ 236 0004 064B     		ldr	r3, .L17
+ 237 0006 9A42     		cmp	r2, r3
+ 238 0008 00D0     		beq	.L16
+ 239              	.LVL8:
+ 240              	.L13:
+  98:Core/Src/spi.c ****   {
+  99:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 0 */
+ 100:Core/Src/spi.c **** 
+ 101:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 0 */
+ 102:Core/Src/spi.c ****     /* Peripheral clock disable */
+ 103:Core/Src/spi.c ****     __HAL_RCC_SPI3_CLK_DISABLE();
+ 104:Core/Src/spi.c **** 
+ 105:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
+ 106:Core/Src/spi.c ****     PB3     ------> SPI3_SCK
+ 107:Core/Src/spi.c ****     PB4     ------> SPI3_MISO
+ 108:Core/Src/spi.c ****     PB5     ------> SPI3_MOSI
+ 109:Core/Src/spi.c ****     */
+ 110:Core/Src/spi.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5);
+ 111:Core/Src/spi.c **** 
+ 112:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 1 */
+ 113:Core/Src/spi.c **** 
+ 114:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 1 */
+ 115:Core/Src/spi.c ****   }
+ 116:Core/Src/spi.c **** }
+ 241              		.loc 1 116 1 view .LVU69
+ 242 000a 08BD     		pop	{r3, pc}
+ 243              	.LVL9:
+ 244              	.L16:
  103:Core/Src/spi.c **** 
- 104:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 0 */
- 105:Core/Src/spi.c ****     /* Peripheral clock disable */
- 106:Core/Src/spi.c ****     __HAL_RCC_SPI3_CLK_DISABLE();
- 107:Core/Src/spi.c **** 
- 108:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
- 109:Core/Src/spi.c ****     PB3     ------> SPI3_SCK
- 110:Core/Src/spi.c ****     PB4     ------> SPI3_MISO
- 111:Core/Src/spi.c ****     PB5     ------> SPI3_MOSI
- 112:Core/Src/spi.c ****     */
- 113:Core/Src/spi.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5);
- 114:Core/Src/spi.c **** 
- 115:Core/Src/spi.c ****     /* SPI3 interrupt Deinit */
- 116:Core/Src/spi.c ****     HAL_NVIC_DisableIRQ(SPI3_IRQn);
- 117:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 1 */
- 118:Core/Src/spi.c **** 
- 119:Core/Src/spi.c ****   /* USER CODE END SPI3_MspDeInit 1 */
- 120:Core/Src/spi.c ****   }
- 121:Core/Src/spi.c **** }
- 251              		.loc 1 121 1 view .LVU71
- 252 000a 08BD     		pop	{r3, pc}
- 253              	.LVL11:
- 254              	.L16:
- 106:Core/Src/spi.c **** 
- 255              		.loc 1 106 5 is_stmt 1 view .LVU72
- 256 000c 074A     		ldr	r2, .L17+4
- 257 000e 936D     		ldr	r3, [r2, #88]
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 8
+ 245              		.loc 1 103 5 is_stmt 1 view .LVU70
+ 246 000c 054A     		ldr	r2, .L17+4
+ 247 000e 936D     		ldr	r3, [r2, #88]
+ 248 0010 23F40043 		bic	r3, r3, #32768
+ 249 0014 9365     		str	r3, [r2, #88]
+ 110:Core/Src/spi.c **** 
+ 250              		.loc 1 110 5 view .LVU71
+ 251 0016 3821     		movs	r1, #56
+ 252 0018 0348     		ldr	r0, .L17+8
+ 253              	.LVL10:
+ 110:Core/Src/spi.c **** 
+ 254              		.loc 1 110 5 is_stmt 0 view .LVU72
+ 255 001a FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 256              	.LVL11:
+ 257              		.loc 1 116 1 view .LVU73
+ 258 001e F4E7     		b	.L13
+ 259              	.L18:
+ 260              		.align	2
+ 261              	.L17:
+ 262 0020 003C0040 		.word	1073757184
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 8
 
 
- 258 0010 23F40043 		bic	r3, r3, #32768
- 259 0014 9365     		str	r3, [r2, #88]
- 113:Core/Src/spi.c **** 
- 260              		.loc 1 113 5 view .LVU73
- 261 0016 3821     		movs	r1, #56
- 262 0018 0548     		ldr	r0, .L17+8
- 263              	.LVL12:
- 113:Core/Src/spi.c **** 
- 264              		.loc 1 113 5 is_stmt 0 view .LVU74
- 265 001a FFF7FEFF 		bl	HAL_GPIO_DeInit
- 266              	.LVL13:
- 116:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspDeInit 1 */
- 267              		.loc 1 116 5 is_stmt 1 view .LVU75
- 268 001e 3320     		movs	r0, #51
- 269 0020 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 270              	.LVL14:
- 271              		.loc 1 121 1 is_stmt 0 view .LVU76
- 272 0024 F1E7     		b	.L13
- 273              	.L18:
- 274 0026 00BF     		.align	2
- 275              	.L17:
- 276 0028 003C0040 		.word	1073757184
- 277 002c 00100240 		.word	1073876992
- 278 0030 00040048 		.word	1207960576
- 279              		.cfi_endproc
- 280              	.LFE134:
- 282              		.global	hspi3
- 283              		.section	.bss.hspi3,"aw",%nobits
- 284              		.align	2
- 287              	hspi3:
- 288 0000 00000000 		.space	100
- 288      00000000 
- 288      00000000 
- 288      00000000 
- 288      00000000 
- 289              		.text
- 290              	.Letext0:
- 291              		.file 2 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
- 292              		.file 3 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 293              		.file 4 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 294              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 295              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
- 296              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 297              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 298              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
- 299              		.file 10 "Core/Inc/spi.h"
- 300              		.file 11 "Core/Inc/main.h"
-ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s 			page 9
+ 263 0024 00100240 		.word	1073876992
+ 264 0028 00040048 		.word	1207960576
+ 265              		.cfi_endproc
+ 266              	.LFE134:
+ 268              		.global	hspi3
+ 269              		.section	.bss.hspi3,"aw",%nobits
+ 270              		.align	2
+ 273              	hspi3:
+ 274 0000 00000000 		.space	100
+ 274      00000000 
+ 274      00000000 
+ 274      00000000 
+ 274      00000000 
+ 275              		.text
+ 276              	.Letext0:
+ 277              		.file 2 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 278              		.file 3 "C:/Users/vmyhr/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 279              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+ 280              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 281              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 282              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 283              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 284              		.file 9 "Core/Inc/spi.h"
+ 285              		.file 10 "Core/Inc/main.h"
+ARM GAS  C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:21     .text.MX_SPI3_Init:00000000 $t
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:100    .text.MX_SPI3_Init:0000003c $d
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:287    .bss.hspi3:00000000 hspi3
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:106    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:112    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:218    .text.HAL_SPI_MspInit:0000006c $d
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:224    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:230    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:276    .text.HAL_SPI_MspDeInit:00000028 $d
-C:\Users\vmyhr\AppData\Local\Temp\ccOvfUPO.s:284    .bss.hspi3:00000000 $d
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:21     .text.MX_SPI3_Init:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:27     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:100    .text.MX_SPI3_Init:0000003c $d
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:273    .bss.hspi3:00000000 hspi3
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:106    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:112    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:208    .text.HAL_SPI_MspInit:0000005c $d
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:214    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:220    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:262    .text.HAL_SPI_MspDeInit:00000020 $d
+C:\Users\vmyhr\AppData\Local\Temp\ccEJbnAb.s:270    .bss.hspi3:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init
 Error_Handler
 HAL_GPIO_Init
-HAL_NVIC_SetPriority
-HAL_NVIC_EnableIRQ
 HAL_GPIO_DeInit
-HAL_NVIC_DisableIRQ

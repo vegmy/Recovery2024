@@ -56,8 +56,10 @@ void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
 void EXTI15_10_IRQHandler(void);
-void SPI3_IRQHandler(void);
 /* USER CODE BEGIN EFP */
+void SPI_CLEAR_DR(SPI_TypeDef *SPIx);
+void SPI_WRITE_DR(SPI_TypeDef *SPIx, uint8_t DATA);
+
 
 /* USER CODE END EFP */
 

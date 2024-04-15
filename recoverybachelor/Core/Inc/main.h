@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -53,6 +53,15 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void SPI_WRITE_DR(SPI_TypeDef *SPIx, uint8_t DATA);
+void SPI_WAIT_RXNE(SPI_TypeDef *SPIx);
+void SPI_CLEAR_DR(SPI_TypeDef *SPIx);
+uint8_t SPI_READ_DR(SPI_TypeDef *SPIx);
+void SPI_WAIT_TXE(SPI_TypeDef *SPIx);
+void SPI_WAIT_NOT_BUSY(SPI_TypeDef *SPIx);
+bool spi_wait_rxne_timeout(SPI_TypeDef *SPIx, uint8_t timeout_tries); 
+HAL_StatusTypeDef SPI_Receive(SPI_TypeDef *SPIx, uint8_t *ptr_ReceiveData, uint16_t Size);
+HAL_StatusTypeDef SPI_TransmitReceive(SPI_TypeDef *SPIx, uint8_t *ptr_SendData, uint8_t *ptr_ReceiveData, uint16_t Size);
 
 /* USER CODE END EFP */
 
