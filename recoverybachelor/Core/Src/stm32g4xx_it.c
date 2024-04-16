@@ -26,6 +26,8 @@
 #include "spi_slave_module.h"
 #include "string.h"
 #include "spi.h"
+#include "stm32g4xx_hal.h"
+#include "stm32g4xx_hal_spi.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -216,10 +218,12 @@ void EXTI15_10_IRQHandler(void)
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
     // HAL_SPI_Init(&hspi3);
+    enable_spi(&hspi3.Instance);
 
     HAL_SPI_TransmitReceive(&hspi3, gps_data, rx_data, 12, 1000);
     // SPI_TransmitReceive(hspi3.Instance, gps_data, rx_data, 12);
 
+    disable_spi(&hspi3.Instance);
     switch (rx_data[0])
     {
     case RELASE_DROUGE_CHUTE:
@@ -241,4 +245,13 @@ void EXTI15_10_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 
+void disable_spi(SPI_TypeDef *SPIx)
+{
+    SPIx->CR1 &= ~SPI_CR1_SPE; // disable SPI
+}
+
+void enable_spi(SPI_TypeDef *SPIx)
+{
+    SPIx->CR1 |= SPI_CR1_SPE; // enabling SPI
+}
 /* USER CODE END 1 */
